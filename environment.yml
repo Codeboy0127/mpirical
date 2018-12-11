@@ -1,0 +1,7 @@
+name: mpi-pytest
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - mpi4py
+  - pytest
