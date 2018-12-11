@@ -1,0 +1,2 @@
+include versioneer.py
+include mpi_pytest/_version.py
