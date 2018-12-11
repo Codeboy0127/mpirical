@@ -1,16 +1,10 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
-#
 version: 2
 jobs:
   build:
-    - docker:
+    docker:
       - image: circleci/python:3.6.1
 
-    - working_directory: ~/repo
-
-    - steps:
+    steps:
       - run: apk add --no-cache build-base ca-certificates git openssh
       - checkout
       - restore_cache:
@@ -28,3 +22,9 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build
