@@ -18,7 +18,7 @@ jobs:
             - /opt/conda/pkgs
       - run:
           name: Running Unit Tests
-          command: source activate mpi-pytest-dev && pytest tests
+          command: source activate mpi-pytest-dev && pytest -v tests
       - store_artifacts:
           path: test-reports
           destination: test-reports
