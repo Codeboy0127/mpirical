@@ -11,14 +11,14 @@ jobs:
           keys:
             - conda-pkgs
       - run: conda create -q -n mpi-pytest python=3.6 && conda env update -f environment-dev.yml
-      - run: source activate mpi-pytest && pip install --no-deps -e .
+      - run: source activate mpi-pytest-dev && pip install --no-deps -e .
       - save_cache:
           key: conda-pkgs
           paths:
             - /opt/conda/pkgs
       - run:
           name: Running Unit Tests
-          command: source activate mpi-pytest && pytest tests
+          command: source activate mpi-pytest-dev && pytest tests
       - store_artifacts:
           path: test-reports
           destination: test-reports
