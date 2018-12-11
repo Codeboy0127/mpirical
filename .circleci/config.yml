@@ -10,7 +10,7 @@ jobs:
       - restore_cache:
           keys:
             - conda-pkgs
-      - run: conda create -q -n mpi-pytest python=3.6 && conda env update -f environment.yml
+      - run: conda create -q -n mpi-pytest python=3.6 && conda env update -f environment-dev.yml
       - run: source activate mpi-pytest && pip install --no-deps -e .
       - save_cache:
           key: conda-pkgs
