@@ -1,0 +1,32 @@
+version: 2
+
+jobs:
+
+  run_tests:
+
+    docker:
+      - image: frolvlad/alpine-miniconda3
+
+    steps:
+      - run: apk add --no-cache build-base ca-certificates git openssh
+      - checkout
+      - restore_cache:
+          keys:
+            - conda-pkgs
+      - run: conda create -q -n mpi-pytest python=3.6 && conda env update -f environment.yml
+      - run: source activate mpi-pytest && pip install --no-deps -e .
+      - save_cache:
+          key: conda-pkgs
+          paths:
+            - /opt/conda/pkgs
+      - run:
+          name: Running Unit Tests
+          command: source activate mpi-pytest && pytest tests
+
+workflows:
+
+  version: 2
+
+  default:
+    jobs:
+      - run_tests
