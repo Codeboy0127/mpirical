@@ -1,17 +1,48 @@
 #!/usr/bin/env python
-from setuptools import setup
 import versioneer
+import yaml
 
-setup(name='mpi-pytest',
+from six import string_types
+from os.path import exists
+from setuptools import setup
+
+
+def environment_dependencies(obj, dependencies=None):
+    if dependencies is None:
+        dependencies = []
+    if isinstance(obj, string_types):
+        dependencies.append(obj)
+    elif isinstance(obj, dict):
+        if 'dependencies' in obj:
+            environment_dependencies(obj['dependencies'], dependencies=dependencies)
+        elif 'pip' in obj:
+            environment_dependencies(obj['pip'], dependencies=dependencies)
+    elif isinstance(obj, list):
+        for d in obj:
+            environment_dependencies(d, dependencies=dependencies)
+    return dependencies
+
+
+with open('environment.yml') as f:
+    install_requires = environment_dependencies(yaml.safe_load(f))
+
+if exists('README.rst'):
+    with open('README.rst') as f:
+        long_description = f.read()
+else:
+    long_description = ''
+
+
+setup(name='mpipytest',
       version=versioneer.get_version(),
       cmdclass=versioneer.get_cmdclass(),
       description='A pytest-friendly package to run parallel MPI tests',
-      author='Kevin Paul',
-      author_email='kpaul@ucar.edu',
-      url='https://github.com/NCAR/mpi-pytest',
+      url='https://github.com/NCAR/mpipytest',
+      maintainer='Kevin Paul',
+      maintainer_email='kpaul@ucar.edu',
       license='https://www.apache.org/licenses/LICENSE-2.0',
-      packages=['mpi_pytest'],
-      package_dir={'mpi_pytest': 'mpi_pytest'},
-      package_data={'mpi_pytest': ['LICENSE']},
-      install_requires=['mpi4py']
-      )
+      include_package_data=True,
+      install_requires=install_requires,
+      packages=['mpipytest'],
+      long_description=long_description,
+      zip_safe=False)
