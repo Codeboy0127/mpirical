@@ -1,7 +1,7 @@
-name: mpi-pytest
+name: mpipytest
 channels:
   - conda-forge
   - defaults
 dependencies:
   - mpi4py
-  - pytest
+  - dill

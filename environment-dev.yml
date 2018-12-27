@@ -1,8 +1,13 @@
-name: mpi-pytest-dev
+name: mpipytest-dev
 channels:
   - conda-forge
   - defaults
 dependencies:
+  - mpich
   - mpi4py
   - pytest
+  - pytest-cov
+  - coverage
+  - dill
   - versioneer
+  - pyyaml
