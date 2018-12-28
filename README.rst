@@ -4,7 +4,7 @@ Parallel Python Testing with mpi4py
 
 |Circle|
 
-The ``mpipytest`` is a pytest-friendly package to run parallel tests with ``mpi4py``.
+The ``mpipytest`` package is a pytest-friendly package to run parallel tests with ``mpi4py``.
 See documentation_ for more details.
 
 
