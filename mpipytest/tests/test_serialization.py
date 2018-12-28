@@ -16,13 +16,15 @@ def test_serialize_test_type():
 
 
 def test_deserialize_test():
-    def test_func(*args, **kwargs):
-        return args, kwargs
+    def func(*arguments, **keywords):
+        return arguments, keywords
 
     args = (1, 'a')
     kwargs = {'x': 2, 'y': 'b'}
 
-    serialized_test = serialize_test(test_func, *args, **kwargs)
-    deserialized_test = deserialize_test(serialized_test)
+    serialized_test = serialize_test(func, *args, **kwargs)
+    d_func, d_args, d_kwargs = deserialize_test(serialized_test)
 
-    assert deserialized_test == (args, kwargs)
+    assert d_func.__name__ == func.__name__
+    assert d_args == args
+    assert d_kwargs == kwargs
