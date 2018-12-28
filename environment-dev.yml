@@ -9,5 +9,6 @@ dependencies:
   - pytest-cov
   - coverage
   - dill
+  - cloudpickle
   - versioneer
   - pyyaml

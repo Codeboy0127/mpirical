@@ -5,3 +5,4 @@ channels:
 dependencies:
   - mpi4py
   - dill
+  - cloudpickle
