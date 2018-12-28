@@ -28,7 +28,7 @@ jobs:
           name: Running tests
           command: |
             source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml --cov=./ dask_mpi/tests/
+            pytest --junitxml=test-reports/junit.xml --cov=./ mpipytest/tests/
       - save_cache:
           key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
           paths:
@@ -54,7 +54,7 @@ jobs:
           name: Running tests
           command: |
             source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml --cov=./ dask_mpi/tests/
+            pytest --junitxml=test-reports/junit.xml --cov=./ mpipytest/tests/
       - save_cache:
           key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
           paths:
