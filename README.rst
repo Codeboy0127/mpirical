@@ -1,4 +1,4 @@
-.. image:: https://circleci.com/gh/NCAR/mpipytest/tree/master.svg?style=svg
+.. image:: https://circleci.com/gh/NCAR/mpipytest/tree/master.svg?style=for-the-badge
     :target: https://circleci.com/gh/NCAR/mpipytest/tree/master
 
 ===================================
