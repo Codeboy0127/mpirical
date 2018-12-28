@@ -1,14 +1,18 @@
-# Contributor Code of Conduct
+Contributor Code of Conduct
+===========================
 
-## RELATED CODE OF CONDUCT
+RELATED CODE OF CONDUCT
+-----------------------
 
 [Participant Code of Conduct](https://www2.fin.ucar.edu/ethics/participant-code-conduct)
 
-## Our Pledge
+Our Pledge
+----------
 
 We, as contributors and maintainers (participants), of `mpipytest` pledge to make participation in our software project and community a safe, productive, welcoming and inclusive experience for everyone. All participants are required to abide by this Code of Conduct. This includes respectful treatment of everyone regardless of age, body size, disability, ethnicity, gender identity or expression, level of experience, nationality, political affiliation, veteran status, pregnancy, genetic information, physical appearance, race, religion, or sexual orientation, as well as any other characteristic protected under applicable US federal or state law.
 
-## Our Standards
+Our Standards
+-------------
 
 Examples of behaviors that contribute to a positive environment include:
 
@@ -35,21 +39,25 @@ Examples of unacceptable behavior include, but are not limited to:
 * Threatening or stalking other participants
 * Other conduct which could reasonably be considered inappropriate in a professional setting
 
-## Scope
+Scope
+-----
 
 This Code of Conduct applies to all spaces managed by the Project whether it be online or face-to-face. This includes project code, code repository, associated web pages, documentation, mailing lists, project websites and wiki pages, issue tracker, meetings, telecons, events, project social media accounts, and any other forums created by the project team which the community uses for communication. In addition, violations of this Code of Conduct outside these spaces may affect a person's ability to participate within them. Representation of a project may be further defined and clarified by project maintainers.
  
-## Community Responsibilities
+Community Responsibilities
+--------------------------
  
 Everyone in the community is empowered to respond to people who are showing unacceptable behavior. They can talk to them privately or publicly. Anyone requested to stop unacceptable behavior is expected to comply immediately. If the behavior continues concerns may be brought to the project administrators or to any other party listed in the Reporting section below.
  
-## Project Administrator Responsibilities
+Project Administrator Responsibilities
+--------------------------------------
 
 Project Administrators are responsible for clarifying the standards of acceptable behavior and are encouraged to model appropriate behavior and provide support when people in the community point out inappropriate behavior. Project administrator(s) are normally the ones that would be tasked to carry out the actions in the Consequences section below.
 
 Project Administrators are also expected to keep this Code of Conduct updated with the main one housed at UCAR as listed below in the Attribution section.
 
-## Reporting
+Reporting
+---------
 
 Instances of unacceptable behavior can be brought to the attention of the project administrator(s) who may take any action as outlined in the Consequences section below. However, making a report to a project administrator is not considered an 'official report' to UCAR.
 
@@ -58,21 +66,25 @@ Complaints received by UCAR will be handled pursuant to the procedures outlined 
 
 Any Contributor can use these reporting methods even if they are not directly affiliated with UCAR. The Frequently Asked Questions (FAQ) page for reporting is here: [https://www2.fin.ucar.edu/procedures/hr/reporting-faqs](https://www2.fin.ucar.edu/procedures/hr/reporting-faqs).
 
-## Consequences
+Consequences
+------------
 
 Upon receipt of a complaint, the project administrator(s) may take any action deemed necessary and appropriate under the circumstances. Such action can include things such as: removing, editing, or rejecting comments, commits, code, wiki edits, email, issues, and other contributions that are not aligned to this Code of Conduct, or banning temporarily or permanently any contributor for other behaviors that are deemed inappropriate, threatening, offensive, or harmful. Project Administrators also have the right to report violations to UCAR HR and/or UCAR's Office of Diversity, Equity and Inclusion (ODEI) as well as a participant's home institution and/or law enforcement. In the event an incident is reported to UCAR, UCAR will follow its Harassment Reporting and Complaint Procedure.
 
-## Process for Changes
+Process for Changes
+-------------------
 
 All UCAR managed projects are required to adopt this Contributor Code of Conduct. Adoption is assumed even if not expressly stated in the repository. Projects should fill in sections where prompted with project-specific information, including, project name, email addresses, adoption date, etc. There is one section below marked "optional" that may not apply to a given project.
 
 Projects that adopt this Code of Conduct need to stay up to date with UCAR's Contributor Code of Conduct, linked with a DOI in the "Attribution" section below. Projects can make limited substantive changes to the Code of Conduct, however, the changes must be limited in scope and may not contradict the UCAR Contributor Code of Conduct.                      
 
-## Attribution
+Attribution
+-----------
 
 This Code of Conduct was originally adapted from the Contributor Covenant, version 1.4, available at [Contributor-Covenant](http://contributor-covenant.org/version/1/4) We then aligned it with the UCAR Participant Code of Conduct, which also borrows from the American Geophysical Union (AGU) Code of Conduct. The UCAR Participant Code of Conduct applies to both UCAR employees as well as participants in activities run by UCAR. We modified the "Scope" section with the django project description, and we added "Publication Ethics" from the NGEET/FATES project. The original version of this for all software projects that have strong management from UCAR or UCAR staff is available on the UCAR website at [Contributor Code of Conduct](https://www2.fin.ucar.edu/ethics/contributor-code-conduct).  The date that it was adopted by this project was December 13, 2018. When responding to complaints UCAR HR and ODEI will do so based on the latest published version. Therefore, any project-specific changes should follow the Process for Changes section above.
 
-## Publication Ethics
+Publication Ethics
+------------------
 
 We aim to create an open development environment where developers can be confident that all members of the community are publishing any research on the project in an ethical manner. In particular, writing code is a form of intellectual contribution, and one should expect that all such intellectual contributions are respected and given credit in any resulting published work. To support the community and avoid issues of misconduct related to the above principle, please respect the following rules:
 
