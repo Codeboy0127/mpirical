@@ -5,7 +5,7 @@ set -eo pipefail
 
 apt-get update; apt-get install -y make
 conda config --set always_yes true --set changeps1 false --set quiet true
-conda update -q conda
+conda update --quiet conda
 conda config --add channels conda-forge
 conda env create --name ${ENV_NAME} python=${PYTHON} --quiet
 conda env list
