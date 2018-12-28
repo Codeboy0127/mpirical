@@ -15,5 +15,5 @@ Apache 2.0 (See `License File <https://www.apache.org/licenses/LICENSE-2.0>`__)
 
 .. _documentation: 
 
-.. |Circle| image:: https://circleci.com/gh/NCAR/mpipytest.svg?style=for-the-badge
+.. |Circle| image:: https://img.shields.io/circleci/project/github/NCAR/mpipytest.svg?style=for-the-badge
     :target: https://circleci.com/gh/NCAR/mpipytest/tree/master
