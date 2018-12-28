@@ -17,6 +17,9 @@ conda env create --name ${ENV_NAME} python=${PYTHON} --quiet
 echo; echo "===== ACTIVATE ${ENV_NAME} ENVIRONMENT ====="; echo
 source activate ${ENV_NAME}
 
+echo; echo "===== ${ENV_NAME} ENVIRONMENT PYTHON VERSION ====="; echo
+python --version
+
 echo; echo "===== UPDATE ${ENV_NAME} ENVIRONMENT ====="; echo
 conda env update --file environment-dev.yml --quiet
 
@@ -31,3 +34,5 @@ conda list
 
 echo; echo "===== PIP LIST ${ENV_NAME} ====="; echo
 pip list
+
+
