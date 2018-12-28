@@ -4,124 +4,59 @@ workflows:
   version: 2
   default:
     jobs:
-      - test-3.7
       - test-3.6
-      - test-3.5
       - test-2.7
 
 jobs:
-  test-3.7:
-    docker:
-      - image: frolvlad/alpine-miniconda3
-
-    steps:
-      - run: apk add --no-cache build-base ca-certificates git openssh
-      - checkout
-      - restore_cache:
-          keys:
-            - conda-pkgs
-      - run: conda create -q -n mpi-pytest-dev python=3.7 && conda env update -f environment-dev.yml
-      - run: source activate mpi-pytest-dev && pip install --no-deps -e .
-      - save_cache:
-          key: conda-pkgs
-          paths:
-            - /opt/conda/pkgs
-      - run:
-          name: Running Unit Tests
-          command: |
-            source activate mpi-pytest-dev
-            mkdir test-reports
-            pytest --junitxml=test-reports/junit.xml tests
-
-      - store_test_results:
-          path: test-reports
-
-      - store_artifacts:
-          path: test-reports
 
   test-3.6:
     docker:
-      - image: frolvlad/alpine-miniconda3
+      - image: continuumio/miniconda:latest
+
+    environment:
+      PYTHON: "3.6"
+      ENV_NAME: "mpipytest-dev"
 
     steps:
-      - run: apk add --no-cache build-base ca-certificates git openssh
       - checkout
       - restore_cache:
-          keys:
-            - conda-pkgs
-      - run: conda create -q -n mpi-pytest-dev python=3.6 && conda env update -f environment-dev.yml
-      - run: source activate mpi-pytest-dev && pip install --no-deps -e .
-      - save_cache:
-          key: conda-pkgs
-          paths:
-            - /opt/conda/pkgs
+          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
       - run:
-          name: Running Unit Tests
-          command: |
-            source activate mpi-pytest-dev
-            mkdir test-reports
-            pytest --junitxml=test-reports/junit.xml tests
-
-      - store_test_results:
-          path: test-reports
-
-      - store_artifacts:
-          path: test-reports
-
-  test-3.5:
-    docker:
-      - image: frolvlad/alpine-miniconda3
-
-    steps:
-      - run: apk add --no-cache build-base ca-certificates git openssh
-      - checkout
-      - restore_cache:
-          keys:
-            - conda-pkgs
-      - run: conda create -q -n mpi-pytest-dev python=3.5 && conda env update -f environment-dev.yml
-      - run: source activate mpi-pytest-dev && pip install --no-deps -e .
-      - save_cache:
-          key: conda-pkgs
-          paths:
-            - /opt/conda/pkgs
+          name: Install and activate conda environment
+          command: ./ci/install-circle.sh
       - run:
-          name: Running Unit Tests
+          name: Running tests
           command: |
-            source activate mpi-pytest-dev
-            mkdir test-reports
-            pytest --junitxml=test-reports/junit.xml tests
-
-      - store_test_results:
-          path: test-reports
-
-      - store_artifacts:
-          path: test-reports
+            source activate ${ENV_NAME}
+            pytest --junitxml=test-reports/junit.xml --cov=./ dask_mpi/tests/
+      - save_cache:
+          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+            - "/opt/conda/pkgs"
 
   test-2.7:
     docker:
-      - image: frolvlad/alpine-miniconda3
+      - image: continuumio/miniconda:latest
+
+    environment:
+      PYTHON: "2.7"
+      ENV_NAME: "mpipytest-dev"
 
     steps:
-      - run: apk add --no-cache build-base ca-certificates git openssh
       - checkout
       - restore_cache:
-          keys:
-            - conda-pkgs
-      - run: conda create -q -n mpi-pytest-dev python=2.7 && conda env update -f environment-dev.yml
-      - run: source activate mpi-pytest-dev && pip install --no-deps -e .
-      - save_cache:
-          key: conda-pkgs
-          paths:
-            - /opt/conda/pkgs
+          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
       - run:
-          name: Running Unit Tests
+          name: Install and activate conda environment
+          command: ./ci/install-circle.sh
+      - run:
+          name: Running tests
           command: |
-            source activate mpi-pytest-dev
-            mkdir test-reports
-            pytest --junitxml=test-reports/junit.xml tests
-
-      - store_test_results:
-          path: test-reports
-
-      - store_artifacts:
-          path: test-reports
+            source activate ${ENV_NAME}
+            pytest --junitxml=test-reports/junit.xml --cov=./ dask_mpi/tests/
+      - save_cache:
+          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+            - "/opt/conda/pkgs"
