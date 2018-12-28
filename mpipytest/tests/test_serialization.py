@@ -4,8 +4,8 @@ from mpipytest.serialization import serialize_test, deserialize_test
 
 
 def test_serialize_test_type():
-    def func(*args, **kwargs):
-        return args, kwargs
+    def func(*arguments, **keywords):
+        return arguments, keywords
 
     serialized_test = serialize_test(func, 1, 'a', x=2, y='b')
 
@@ -28,6 +28,4 @@ def test_deserialize_test():
     assert d_func.__name__ == func.__name__
     assert d_args == args
     assert d_kwargs == kwargs
-
-
-def test_deserialized_test_runs():
+    assert d_func(*d_args, **d_kwargs) == func(*args, **kwargs)
