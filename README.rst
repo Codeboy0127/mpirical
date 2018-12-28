@@ -1,3 +1,6 @@
+.. image:: https://circleci.com/gh/NCAR/mpipytest/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/NCAR/mpipytest/tree/master
+
 ===================================
 Parallel Python Testing with mpi4py
 ===================================
