@@ -3,7 +3,7 @@ import pickle
 import dill
 import cloudpickle
 
-from serialization import serialize, deserialize
+from mpipytest.serialization import serialize, deserialize
 from tests.utils import mpi_bcast, serialized_mpi_bcast
 
 
