@@ -20,7 +20,8 @@ def serialized_mpi_bcast():
 
 @pytest.mark.parametrize('serializers', ([dill], [pickle], [cloudpickle]))
 def test_serialize_mpi_bcast(serializers):
-    serialize(mpi_bcast, serializers=serializers)
+    serialized_bcast = serialize(mpi_bcast, serializers=serializers)
+    assert isinstance(serialized_bcast, (str, bytes))
 
 
 @pytest.mark.parametrize('deserializers', ([dill], [pickle], [cloudpickle]))
