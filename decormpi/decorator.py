@@ -8,7 +8,7 @@ from decormpi.mpirun_task_file import subprocess_mpirun_task_file
 class mpirun(object):
     """A decorator to execute functions in their own MPI environment"""
 
-    def __init__(self, nprocs=1, timeout=20):
+    def __init__(self, nprocs=1):
         """
         Run a function in an MPI environment
 
@@ -18,7 +18,6 @@ class mpirun(object):
             The number of processors to use in the mpirun call
         """
         self.nprocs = nprocs
-        self.timeout = timeout
 
     def __call__(self, func):
         def wrapped_func(*args, **kwargs):
@@ -26,7 +25,7 @@ class mpirun(object):
             task_file = '{}.task'.format(func.__name__)
             serialize(task, file=task_file)
 
-            subprocess_mpirun_task_file(task_file, nprocs=self.nprocs, timeout=self.timeout)
+            subprocess_mpirun_task_file(task_file, nprocs=self.nprocs)
 
             result_file = '{}.result'.format(task_file)
             result = deserialize(file=result_file)

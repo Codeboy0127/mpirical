@@ -11,11 +11,11 @@ if not exists(MPIRUN):
     raise RuntimeError('Cannot find mpirun')
 
 
-def subprocess_mpirun_task_file(task_file, result_file=None, nprocs=1, timeout=10):
+def subprocess_mpirun_task_file(task_file, result_file=None, nprocs=1):
     if result_file is None:
         result_file = '{}.result'.format(task_file)
     p = Popen([MPIRUN, '-np', str(nprocs), executable, THIS_SCRIPT, task_file, result_file])
-    p.communicate(timeout=timeout)
+    p.wait()
     if p.returncode != 0:
         raise RuntimeError('Task failed to run')
 
