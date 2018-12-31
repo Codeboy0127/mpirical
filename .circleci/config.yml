@@ -15,7 +15,7 @@ jobs:
 
     environment:
       PYTHON: "3.6"
-      ENV_NAME: "decorum-dev"
+      ENV_NAME: "decormpi-dev"
 
     steps:
       - checkout
@@ -41,7 +41,7 @@ jobs:
 
     environment:
       PYTHON: "2.7"
-      ENV_NAME: "decorum-dev"
+      ENV_NAME: "decormpi-dev"
 
     steps:
       - checkout

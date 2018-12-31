@@ -11,7 +11,7 @@ RELATED CODE OF CONDUCT
 Our Pledge
 ----------
 
-We, as contributors and maintainers (participants), of ``mpipytest`` pledge to make participation
+We, as contributors and maintainers (participants), of ``decormpi`` pledge to make participation
 in our software project and community a safe, productive, welcoming and inclusive experience for
 everyone. All participants are required to abide by this Code of Conduct. This includes respectful
 treatment of everyone regardless of age, body size, disability, ethnicity, gender identity or

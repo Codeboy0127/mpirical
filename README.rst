@@ -4,7 +4,7 @@ Execute Parallel Python Code in its own MPI Environment
 
 |Circle|
 
-The ``decorum`` package provides an easy way to execute parallel Python code that uses ``mpi4py``
+The ``decormpi`` package provides an easy way to execute parallel Python code that uses ``mpi4py``
 in its own MPI environment.  See documentation_ for more details.
 
 
