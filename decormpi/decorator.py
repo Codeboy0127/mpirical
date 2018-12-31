@@ -12,6 +12,9 @@ class mpirun(object):
         """
         Run a function in an MPI environment
 
+        The `mpirun` decorator will run the function with the installed `mpirun`
+        executable that is part of the MPI installation used by `mpi4py`.
+
         Parameters
         ----------
         nprocs : int
