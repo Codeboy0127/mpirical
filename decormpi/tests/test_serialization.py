@@ -44,7 +44,7 @@ def test_deserialize_mpi_bcast_to_from_filename():
     serialized_mpi_bcast = serialize(mpi_bcast, file=filename)
     assert serialized_mpi_bcast is None
     assert os.path.exists(filename)
-    deserialized_mpi_bcast = deserialize(serialized_mpi_bcast, file=filename)
+    deserialized_mpi_bcast = deserialize(file=filename)
     assert deserialized_mpi_bcast('x') == mpi_bcast('x')
     os.remove(filename)
 
@@ -56,6 +56,6 @@ def test_deserialize_mpi_bcast_to_from_file():
     assert serialized_mpi_bcast is None
     assert os.path.exists(filename)
     with open(filename, 'rb') as f:
-        deserialized_mpi_bcast = deserialize(serialized_mpi_bcast, file=f)
+        deserialized_mpi_bcast = deserialize(file=f)
     assert deserialized_mpi_bcast('x') == mpi_bcast('x')
     os.remove(filename)

@@ -75,7 +75,7 @@ def serialize(obj, serializers=None, file=None, **kwargs):
     return _try_methods(obj, modules=modules, write=True, file=file, **kwargs)
 
 
-def deserialize(obj, deserializers=None, file=None, **kwargs):
+def deserialize(obj=None, deserializers=None, file=None, **kwargs):
     if deserializers:
         modules = list(deserializers)
     else:
