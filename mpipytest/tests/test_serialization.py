@@ -5,7 +5,7 @@ import dill
 import cloudpickle
 
 from mpipytest.serialization import serialize, deserialize
-from tests.utils import mpi_bcast
+from mpipytest.tests.utils import mpi_bcast
 
 
 def test_serialize_mpi_bcast_default():
