@@ -1,3 +1,4 @@
+import os
 import pytest
 
 from decormpi.tests.utils import mpi_bcast
@@ -64,3 +65,13 @@ def test_serialize_lambda_task():
     serialized_task = serialize(task)
     deserialized_task = deserialize(serialized_task)
     assert deserialized_task.compute() == task.compute()
+
+
+def test_serialize_mpi_bcast_task_to_from_file():
+    task = Task(mpi_bcast, 'x')
+    filename = 'mpi_bcast_task.out'
+    serialize(task, file=filename)
+    assert os.path.exists(filename)
+    deserialized_task = deserialize(file=filename)
+    assert deserialized_task.compute() == task.compute()
+    os.remove(filename)
