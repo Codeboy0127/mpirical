@@ -1,11 +1,11 @@
-===================================
-Parallel Python Testing with mpi4py
-===================================
+=======================================================
+Execute Parallel Python Code in its own MPI Environment
+=======================================================
 
 |Circle|
 
-The ``mpipytest`` package is a pytest-friendly package to run parallel tests with ``mpi4py``.
-See documentation_ for more details.
+The ``decorum`` package provides an easy way to execute parallel Python code that uses ``mpi4py``
+in its own MPI environment.  See documentation_ for more details.
 
 
 LICENSE

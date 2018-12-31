@@ -1,4 +1,4 @@
-name: mpipytest-dev
+name: decorum-dev
 channels:
   - conda-forge
   - defaults

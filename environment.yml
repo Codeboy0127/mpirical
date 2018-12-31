@@ -1,4 +1,4 @@
-name: mpipytest
+name: decorum
 channels:
   - conda-forge
   - defaults

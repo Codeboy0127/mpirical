@@ -33,16 +33,16 @@ else:
     long_description = ''
 
 
-setup(name='mpipytest',
+setup(name='decorum',
       version=versioneer.get_version(),
       cmdclass=versioneer.get_cmdclass(),
-      description='A pytest-friendly package to run parallel MPI tests',
-      url='https://github.com/NCAR/mpipytest',
+      description='Easily execute code in its own MPI environment',
+      url='https://github.com/NCAR/decorum',
       maintainer='Kevin Paul',
       maintainer_email='kpaul@ucar.edu',
       license='https://www.apache.org/licenses/LICENSE-2.0',
       include_package_data=True,
       install_requires=install_requires,
-      packages=['mpipytest'],
+      packages=['decorum'],
       long_description=long_description,
       zip_safe=False)
