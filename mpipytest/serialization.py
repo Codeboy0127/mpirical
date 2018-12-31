@@ -4,7 +4,7 @@ import dill
 
 
 def serialize(obj, *args, **kwargs):
-    serializers = kwargs.pop('serializers', [dill, cloudpickle, pickle])
+    serializers = list(kwargs.pop('serializers', [dill, cloudpickle, pickle]))
     unsuccessful = True
     last_exception = None
     serialized_obj = None
@@ -23,7 +23,7 @@ def serialize(obj, *args, **kwargs):
 
 
 def deserialize(serialized_obj, *args, **kwargs):
-    deserializers = kwargs.pop('deserializers', [dill, cloudpickle, pickle])
+    deserializers = list(kwargs.pop('deserializers', [dill, cloudpickle, pickle]))
     unsuccessful = True
     last_exception = None
     deserialized_obj = None
