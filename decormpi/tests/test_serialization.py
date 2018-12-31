@@ -1,3 +1,4 @@
+import os
 import sys
 import pytest
 import pickle
@@ -36,3 +37,25 @@ def test_deserialize_mpi_bcast(deserializers):
     serialized_mpi_bcast = serialize(mpi_bcast, serializers=deserializers)
     deserialized_mpi_bcast = deserialize(serialized_mpi_bcast, deserializers=deserializers)
     assert deserialized_mpi_bcast('x') == mpi_bcast('x')
+
+
+def test_deserialize_mpi_bcast_to_from_filename():
+    filename = 'serialized_mpi_bcast.out'
+    serialized_mpi_bcast = serialize(mpi_bcast, file=filename)
+    assert serialized_mpi_bcast is None
+    assert os.path.exists(filename)
+    deserialized_mpi_bcast = deserialize(serialized_mpi_bcast, file=filename)
+    assert deserialized_mpi_bcast('x') == mpi_bcast('x')
+    os.remove(filename)
+
+
+def test_deserialize_mpi_bcast_to_from_file():
+    filename = 'serialized_mpi_bcast.out'
+    with open(filename, 'wb') as f:
+        serialized_mpi_bcast = serialize(mpi_bcast, file=f)
+    assert serialized_mpi_bcast is None
+    assert os.path.exists(filename)
+    with open(filename, 'rb') as f:
+        deserialized_mpi_bcast = deserialize(serialized_mpi_bcast, file=f)
+    assert deserialized_mpi_bcast('x') == mpi_bcast('x')
+    os.remove(filename)
