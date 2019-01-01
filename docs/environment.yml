@@ -1,0 +1,15 @@
+name: decormpi-docs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - mpi4py
+  - dill
+  - cloudpickle
+  - versioneer
+  - pyyaml
+  - sphinx
+  - pygments
+  - pip:
+    - numpydoc
+    - sphinx_rtd_theme
