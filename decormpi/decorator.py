@@ -31,11 +31,19 @@ class mpirun(object):
             subprocess_mpirun_task_file(task_file, nprocs=self.nprocs)
 
             result_file = '{}.result'.format(task_file)
-            result = deserialize(file=result_file)
+            results = deserialize(file=result_file)
 
             os.remove(task_file)
             if os.path.exists(result_file):
                 os.remove(result_file)
 
-            return result
+            if any(isinstance(r, Exception) for r in results):
+                exception = None
+                for r in results:
+                    if isinstance(r, Exception):
+                        exception = r
+                        break
+                raise exception
+            else:
+                return results
         return wrapped_func
