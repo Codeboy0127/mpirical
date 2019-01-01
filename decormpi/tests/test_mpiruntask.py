@@ -2,7 +2,7 @@ import os
 
 from decormpi.tasks import Task
 from decormpi.serialization import serialize, deserialize
-from decormpi.mpirun_task_file import subprocess_mpirun_task_file, mpirun_task_file
+from decormpi.mpiruntask import subprocess_mpirun_task_file, mpirun_task_file
 
 
 def main_test_func(x, y=2):
