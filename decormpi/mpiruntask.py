@@ -25,7 +25,10 @@ def mpirun_task_file(task_file, result_file=None):
         result_file = '{}.result'.format(task_file)
     from mpi4py import MPI
     task = deserialize(file=task_file)
-    result = task.compute()
+    try:
+        result = task.compute()
+    except Exception as e:
+        result = e
     results = MPI.COMM_WORLD.gather(result)
     if MPI.COMM_WORLD.Get_rank() == 0:
         serialize(results, file=result_file)
