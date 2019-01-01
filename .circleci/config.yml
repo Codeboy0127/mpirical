@@ -34,6 +34,12 @@ jobs:
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
+      - run:
+          name: Report Code Coverage
+          command: |
+            source activate ${ENV_NAME}
+            echo "[Uploading Coverage]"
+            codecov
 
   test-2.7:
     docker:
