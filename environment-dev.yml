@@ -14,3 +14,4 @@ dependencies:
   - tblib
   - versioneer
   - pyyaml
+  - six
