@@ -24,3 +24,20 @@ def test_raise_exception():
 
     with pytest.raises(RuntimeError):
         raise_exception()
+
+
+@decorm.mpirun(n=4)
+def test_decorated_test():
+    from mpi4py import MPI
+    rank = MPI.COMM_WORLD.Get_rank()
+    value = MPI.COMM_WORLD.bcast(rank, root=2)
+    assert value == 2
+
+
+@pytest.mark.xfail
+@decorm.mpirun(n=2)
+def test_decorated_test_failure():
+    from mpi4py import MPI
+    rank = MPI.COMM_WORLD.Get_rank()
+    if rank == 1:
+        raise RuntimeError('TEST')

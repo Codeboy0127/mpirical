@@ -11,11 +11,13 @@ def main_test_func(x, y=2):
 
 def test_mpirun_task_file_serial():
     task_file = 'main_test_func.task'
+    result_file = task_file + '.result'
+
     task = Task(main_test_func, 1)
     serialize(task, file=task_file)
+    assert os.path.exists(task_file)
 
-    mpirun_task_file(task_file)
-    result_file = task_file + '.result'
+    mpirun_task_file(task_file, result_file)
     assert os.path.exists(result_file)
 
     results = deserialize(file=result_file)
@@ -29,11 +31,13 @@ def test_mpirun_task_file_serial():
 
 def test_subprocess_mpirun_task_file():
     task_file = 'main_test_func.task'
+    result_file = task_file + '.result'
+
     task = Task(main_test_func, 1)
     serialize(task, file=task_file)
+    assert os.path.exists(task_file)
 
-    subprocess_mpirun_task_file(task_file, np=2)
-    result_file = task_file + '.result'
+    subprocess_mpirun_task_file(task_file, result_file, np=2)
     assert os.path.exists(result_file)
 
     results = deserialize(file=result_file)

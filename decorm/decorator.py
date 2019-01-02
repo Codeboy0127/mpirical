@@ -31,11 +31,11 @@ class mpirun(object):
         def wrapped_func(*args, **kwargs):
             task = Task(func, *args, **kwargs)
             task_file = '{}.task'.format(func.__name__)
+            result_file = '{}.result'.format(task_file)
             serialize(task, file=task_file)
 
-            subprocess_mpirun_task_file(task_file, **self.kwargs)
+            subprocess_mpirun_task_file(task_file, result_file, **self.kwargs)
 
-            result_file = '{}.result'.format(task_file)
             results = deserialize(file=result_file)
 
             if os.path.exists(task_file):

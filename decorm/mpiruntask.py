@@ -23,30 +23,27 @@ def mpirun_cmds(**kwargs):
     return cmds
 
 
-def subprocess_mpirun_task_file(task_file, result_file=None, **kwargs):
-    if result_file is None:
-        result_file = '{}.result'.format(task_file)
+def subprocess_mpirun_task_file(task_file, result_file, **kwargs):
     p = Popen(mpirun_cmds(**kwargs) + [task_file, result_file])
     p.wait()
     if p.returncode != 0:
         raise RuntimeError('Task failed to run')
 
 
-def mpirun_task_file(task_file, result_file=None):
-    if result_file is None:
-        result_file = '{}.result'.format(task_file)
+def mpirun_task_file(task_file, result_file):
     from mpi4py import MPI
+    rank = MPI.COMM_WORLD.Get_rank()
     task = deserialize(file=task_file)
     try:
         result = task.compute()
     except Exception as e:
         result = e
     results = MPI.COMM_WORLD.gather(result)
-    if MPI.COMM_WORLD.Get_rank() == 0:
+    if rank == 0:
         serialize(results, file=result_file)
 
 
 if __name__ == '__main__':
     t_file = argv[1]
-    r_file = argv[2] if len(argv) > 2 else None
-    mpirun_task_file(t_file, result_file=r_file)
+    r_file = argv[2]
+    mpirun_task_file(t_file, r_file)
