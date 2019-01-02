@@ -11,5 +11,6 @@ dependencies:
   - codecov
   - dill
   - cloudpickle
+  - tblib
   - versioneer
   - pyyaml
