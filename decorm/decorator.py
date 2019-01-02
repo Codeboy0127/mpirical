@@ -38,7 +38,8 @@ class mpirun(object):
             result_file = '{}.result'.format(task_file)
             results = deserialize(file=result_file)
 
-            os.remove(task_file)
+            if os.path.exists(task_file):
+                os.remove(task_file)
             if os.path.exists(result_file):
                 os.remove(result_file)
 
