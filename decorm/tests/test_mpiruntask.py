@@ -32,7 +32,7 @@ def test_subprocess_mpirun_task_file():
     task = Task(main_test_func, 1)
     serialize(task, file=task_file)
 
-    subprocess_mpirun_task_file(task_file, nprocs=2)
+    subprocess_mpirun_task_file(task_file, np=2)
     result_file = task_file + '.result'
     assert os.path.exists(result_file)
 

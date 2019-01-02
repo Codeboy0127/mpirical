@@ -8,19 +8,24 @@ from decorm.mpiruntask import subprocess_mpirun_task_file
 class mpirun(object):
     """A decorator to execute functions in their own MPI environment"""
 
-    def __init__(self, nprocs=1):
+    def __init__(self, **kwargs):
         """
         Run a function in an MPI environment
 
-        The `mpirun` decorator will run the function with the installed `mpirun`
-        executable that is part of the MPI installation used by `mpi4py`.
+        The ``mpirun`` decorator will run the function with the installed ``mpirun``
+        executable that is part of the MPI installation used by ``mpi4py``.
 
         Parameters
         ----------
-        nprocs : int
-            The number of processors to use in the mpirun call
+        kwargs : dict
+            Dictionary that stores the arguments (without their initiall ``-``) to
+            be given to the ``mpirun`` command.  Any value other than ``None`` will
+            be converted to a string and passed as part of the ``mpirun`` argument.
+            For example, the keyword ``np`` with the value ``4`` (i.e.,
+            ``kwargs = {'np': 4}``) would result in ``mpirun`` being called with the
+            arguments ``-np 4``.
         """
-        self.nprocs = nprocs
+        self.kwargs = kwargs
 
     def __call__(self, func):
         def wrapped_func(*args, **kwargs):
@@ -28,7 +33,7 @@ class mpirun(object):
             task_file = '{}.task'.format(func.__name__)
             serialize(task, file=task_file)
 
-            subprocess_mpirun_task_file(task_file, nprocs=self.nprocs)
+            subprocess_mpirun_task_file(task_file, **self.kwargs)
 
             result_file = '{}.result'.format(task_file)
             results = deserialize(file=result_file)
