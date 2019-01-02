@@ -3,7 +3,7 @@ import mpi4py
 from os.path import realpath, dirname, join, exists
 from sys import executable, argv
 from subprocess import Popen
-from decormpi.serialization import serialize, deserialize
+from decorm.serialization import serialize, deserialize
 
 THIS_SCRIPT = realpath(__file__)
 MPIRUN = join(dirname(mpi4py.get_config()['mpicc']), 'mpirun')

@@ -1,8 +1,8 @@
 import os
 
-from decormpi.tasks import Task
-from decormpi.serialization import serialize, deserialize
-from decormpi.mpiruntask import subprocess_mpirun_task_file
+from decorm.tasks import Task
+from decorm.serialization import serialize, deserialize
+from decorm.mpiruntask import subprocess_mpirun_task_file
 
 
 class mpirun(object):

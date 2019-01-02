@@ -1,10 +1,10 @@
 import pytest
-import decormpi
+import decorm
 
 
 def test_get_rank():
 
-    @decormpi.mpirun(nprocs=4)
+    @decorm.mpirun(nprocs=4)
     def get_ranks():
         from mpi4py import MPI
         return MPI.COMM_WORLD.Get_rank()
@@ -14,7 +14,7 @@ def test_get_rank():
 
 def test_raise_exception():
 
-    @decormpi.mpirun(nprocs=2)
+    @decorm.mpirun(nprocs=2)
     def raise_exception():
         from mpi4py import MPI
         if MPI.COMM_WORLD.Get_rank() == 1:

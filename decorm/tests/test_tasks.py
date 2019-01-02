@@ -1,9 +1,9 @@
 import os
 import pytest
 
-from decormpi.tests.utils import mpi_bcast
-from decormpi.serialization import serialize, deserialize
-from decormpi.tasks import Task
+from decorm.tests.utils import mpi_bcast
+from decorm.serialization import serialize, deserialize
+from decorm.tasks import Task
 
 
 def main_test_func(*args, **kwargs):

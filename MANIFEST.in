@@ -1,2 +1,2 @@
 include versioneer.py
-include decormpi/_version.py
+include decorm/_version.py

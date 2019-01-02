@@ -5,8 +5,8 @@ import pickle
 import dill
 import cloudpickle
 
-from decormpi.serialization import serialize, deserialize
-from decormpi.tests.utils import mpi_bcast
+from decorm.serialization import serialize, deserialize
+from decorm.tests.utils import mpi_bcast
 
 
 def test_serialize_mpi_bcast_default():

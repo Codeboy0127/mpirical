@@ -1,4 +1,4 @@
-.. currentmodule:: decormpi
+.. currentmodule:: decorm
 
 API
 ===

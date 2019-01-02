@@ -1,4 +1,4 @@
-name: decormpi-dev
+name: decorm-dev
 channels:
   - conda-forge
   - defaults

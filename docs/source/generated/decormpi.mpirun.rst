@@ -1,7 +1,7 @@
-decormpi.mpirun
-===============
+decorm.mpirun
+=============
 
-.. currentmodule:: decormpi
+.. currentmodule:: decorm
 
 .. autoclass:: mpirun
 

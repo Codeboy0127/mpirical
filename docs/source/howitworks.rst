@@ -1,11 +1,11 @@
-How DecorMPI Works
-==================
+How DecorM Works
+================
 
-DecorMPI works through serialization.  A DecorMPI-decorated function
-is serialized and written to a temporary file.  DecorMPI uses the
+DecorM works through serialization.  A DecorM-decorated function
+is serialized and written to a temporary file.  DecorM uses the
 ``dill``,  ``cloudpickle``, and ``pickle`` packages for serialization,
 in that order, until the function is successfully serialized.  Once it
-is serialized, DecorMPI launches a subprocess that executes a special
+is serialized, DecorM launches a subprocess that executes a special
 MPI executable Python script from within an ``mpirun``-created
 environment.
 
@@ -25,7 +25,7 @@ a request to return the MPI rank of the running MPI process:
 
 .. code-block:: python
 
-   @decormpi.mpirun(nprocs=4)
+   @decorm.mpirun(nprocs=4)
    def get_rank():
        from mpi4py import MPI
        return MPI.COMM_WORLD.Get_rank()

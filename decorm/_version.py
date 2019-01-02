@@ -42,8 +42,8 @@ def get_config():
     cfg.VCS = "git"
     cfg.style = "pep440"
     cfg.tag_prefix = ""
-    cfg.parentdir_prefix = "decormpi-"
-    cfg.versionfile_source = "decormpi/_version.py"
+    cfg.parentdir_prefix = "decorm-"
+    cfg.versionfile_source = "decorm/_version.py"
     cfg.verbose = False
     return cfg
 
