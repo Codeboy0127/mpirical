@@ -8,3 +8,4 @@ dependencies:
   - cloudpickle
   - tblib
   - pyyaml
+  - six
