@@ -1,8 +1,9 @@
-import os
-
+from os import remove
+from os.path import exists
 from decorm.tasks import Task
 from decorm.serialization import serialize, deserialize
 from decorm.mpiruntask import subprocess_mpirun_task_file
+from decorm.exceptions import ExceptionInfo
 
 
 class mpirun(object):
@@ -29,27 +30,35 @@ class mpirun(object):
 
     def __call__(self, func):
         def wrapped_func(*args, **kwargs):
-            task = Task(func, *args, **kwargs)
             task_file = '{}.task'.format(func.__name__)
             result_file = '{}.result'.format(task_file)
+
+            task = Task(func, *args, **kwargs)
             serialize(task, file=task_file)
-
             subprocess_mpirun_task_file(task_file, result_file, **self.kwargs)
-
             results = deserialize(file=result_file)
 
-            if os.path.exists(task_file):
-                os.remove(task_file)
-            if os.path.exists(result_file):
-                os.remove(result_file)
+            self._remove_file(task_file)
+            self._remove_file(result_file)
 
-            if any(isinstance(r, Exception) for r in results):
-                exception = None
-                for r in results:
-                    if isinstance(r, Exception):
-                        exception = r
-                        break
-                raise exception
+            exception = self._get_first_exception(results)
+            if exception:
+                exception.reraise()
             else:
                 return results
         return wrapped_func
+
+    @staticmethod
+    def _remove_file(filename):
+        if exists(filename):
+            remove(filename)
+
+    @staticmethod
+    def _get_first_exception(results):
+        exception = None
+        for r in results:
+            if isinstance(r, ExceptionInfo):
+                exception = r
+                break
+        return exception
+

@@ -18,11 +18,11 @@ def test_raise_exception():
     def raise_exception():
         from mpi4py import MPI
         if MPI.COMM_WORLD.Get_rank() == 1:
-            raise RuntimeError
+            raise ValueError
         else:
             return None
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(ValueError):
         raise_exception()
 
 
@@ -37,7 +37,16 @@ def test_decorated_test():
 @pytest.mark.xfail
 @decorm.mpirun(n=2)
 def test_decorated_test_failure():
+    def f1():
+        raise ValueError('TEST')
+
+    def f2():
+        f1()
+
+    def f3():
+        f2()
+
     from mpi4py import MPI
     rank = MPI.COMM_WORLD.Get_rank()
     if rank == 1:
-        raise RuntimeError('TEST')
+        f3()

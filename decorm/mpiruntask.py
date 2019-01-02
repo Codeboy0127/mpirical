@@ -4,6 +4,9 @@ from os.path import realpath, dirname, join, exists
 from sys import executable, argv
 from subprocess import Popen
 from decorm.serialization import serialize, deserialize
+from decorm.exceptions import ExceptionInfo
+from tblib import pickling_support
+pickling_support.install()
 
 THIS_SCRIPT = realpath(__file__)
 MPIRUN = join(dirname(mpi4py.get_config()['mpicc']), 'mpirun')
@@ -36,8 +39,8 @@ def mpirun_task_file(task_file, result_file):
     task = deserialize(file=task_file)
     try:
         result = task.compute()
-    except Exception as e:
-        result = e
+    except:
+        result = ExceptionInfo(rank)
     results = MPI.COMM_WORLD.gather(result)
     if rank == 0:
         serialize(results, file=result_file)
