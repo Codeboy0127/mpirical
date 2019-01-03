@@ -15,18 +15,18 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-import decorm
+import mpirical
 
 # -- Project information -----------------------------------------------------
 
-project = 'DecorM'
+project = 'mpirical'
 copyright = '2018, National Center for Atmospheric Research'
 author = 'Kevin Paul and collaborators'
 
 # The short X.Y version
-version = decorm.__version__
+version = mpirical.__version__
 # The full version, including alpha/beta/rc tags
-release = decorm.__version__
+release = mpirical.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -111,7 +111,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'DecorMdoc'
+htmlhelp_basename = 'mpiricaldoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -138,7 +138,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'decorm.tex', 'DecorM Documentation',
+    (master_doc, 'mpirical.tex', 'mpirical Documentation',
      'Kevin Paul', 'manual'),
 ]
 
@@ -148,7 +148,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'decorm', 'DecorM Documentation',
+    (master_doc, 'mpirical', 'mpirical Documentation',
      [author], 1)
 ]
 
@@ -159,8 +159,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'decorm', 'DecorM Documentation',
-     author, 'decorm', 'One line description of project.',
+    (master_doc, 'mpirical', 'mpirical Documentation',
+     author, 'mpirical', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -204,6 +204,6 @@ intersphinx_mapping = {
 # Link to GitHub issues and pull requests using :pr:`1234` and :issue:`1234`
 # syntax
 extlinks = {
-    'issue': ('https://github.com/NCAR/DecorM/issues/%s', 'GH#'),
-    'pr': ('https://github.com/NCAR/DecorM/pull/%s', 'GH#')
+    'issue': ('https://github.com/NCAR/mpirical/issues/%s', 'GH#'),
+    'pr': ('https://github.com/NCAR/mpirical/pull/%s', 'GH#')
 }

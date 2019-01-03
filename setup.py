@@ -33,16 +33,16 @@ else:
     long_description = ''
 
 
-setup(name='decorm',
+setup(name='mpirical',
       version=versioneer.get_version(),
       cmdclass=versioneer.get_cmdclass(),
       description='Easily execute code in its own MPI environment',
-      url='https://github.com/NCAR/decorm',
+      url='https://github.com/NCAR/mpirical',
       maintainer='Kevin Paul',
       maintainer_email='kpaul@ucar.edu',
       license='https://www.apache.org/licenses/LICENSE-2.0',
       include_package_data=True,
       install_requires=install_requires,
-      packages=['decorm'],
+      packages=['mpirical'],
       long_description=long_description,
       zip_safe=False)

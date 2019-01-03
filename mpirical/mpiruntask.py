@@ -3,8 +3,8 @@ import mpi4py
 from os.path import realpath, dirname, join, exists
 from sys import executable, argv
 from subprocess import Popen
-from decorm.serialization import serialize, deserialize
-from decorm.exceptions import ExceptionInfo
+from mpirical.serialization import serialize, deserialize
+from mpirical.exceptions import ExceptionInfo
 from tblib import pickling_support
 pickling_support.install()
 

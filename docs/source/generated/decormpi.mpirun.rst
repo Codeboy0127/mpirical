@@ -1,7 +1,7 @@
-decorm.mpirun
+mpirical.mpirun
 =============
 
-.. currentmodule:: decorm
+.. currentmodule:: mpirical
 
 .. autoclass:: mpirun
 

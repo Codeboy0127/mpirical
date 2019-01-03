@@ -1,8 +1,8 @@
-How DecorM Works
+How mpirical Works
 ================
 
-DecorM works through serialization.  A DecorM-decorated function
-is serialized and written to a temporary file.  DecorM uses the
+mpirical works through serialization.  A mpirical-decorated function
+is serialized and written to a temporary file.  mpirical uses the
 ``dill``,  ``cloudpickle``, and ``pickle`` packages for serialization,
 in that order, until the function is successfully serialized.  Once it
 is serialized, DecorM launches a subprocess that executes a special

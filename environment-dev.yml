@@ -1,4 +1,4 @@
-name: decorm-dev
+name: mpirical-dev
 channels:
   - conda-forge
   - defaults

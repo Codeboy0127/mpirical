@@ -1,6 +1,6 @@
 [run]
 omit =
-    decorm/tests/*.py
-    decorm/_version.py
+    mpirical/tests/*.py
+    mpirical/_version.py
     versioneer.py
     setup.py

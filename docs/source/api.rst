@@ -1,4 +1,4 @@
-.. currentmodule:: decorm
+.. currentmodule:: mpirical
 
 API
 ===

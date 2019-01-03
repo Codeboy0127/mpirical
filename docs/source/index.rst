@@ -1,22 +1,22 @@
-.. DecorM documentation master file, created by
+.. mpirical documentation master file, created by
    sphinx-quickstart on Mon Dec 31 16:49:38 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-DecorM
+mpirical
 ======
 
-The DecorM is a package designed to make running Python functions in an
+The mpirical is a package designed to make running Python functions in an
 MPI environment created by using ``mpirun`` or ``mpiexec``.  By simply
 decorating your function, like so:
 
 .. code-block:: python
 
-   @decorm.mpirun(nprocs=4)
+   @mpirical.mpirun(nprocs=4)
    def my_function(*args, **kwargs):
        ...
 
-DecorM will convert your function into a stand-alone executable and run
+mpirical will convert your function into a stand-alone executable and run
 this executable (via a forked subprocess) with ``mpirun``.  It's as easy
 as that!  Just decorate, and your functions will be run with ``mpirun``!
 

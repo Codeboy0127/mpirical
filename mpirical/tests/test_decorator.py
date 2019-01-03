@@ -1,10 +1,10 @@
 import pytest
-import decorm
+import mpirical
 
 
 def test_get_rank():
 
-    @decorm.mpirun(n=4)
+    @mpirical.mpirun(n=4)
     def get_ranks():
         from mpi4py import MPI
         return MPI.COMM_WORLD.Get_rank()
@@ -14,7 +14,7 @@ def test_get_rank():
 
 def test_raise_exception():
 
-    @decorm.mpirun(n=2)
+    @mpirical.mpirun(n=2)
     def raise_exception():
         from mpi4py import MPI
         if MPI.COMM_WORLD.Get_rank() == 1:
@@ -26,7 +26,7 @@ def test_raise_exception():
         raise_exception()
 
 
-@decorm.mpirun(n=4)
+@mpirical.mpirun(n=4)
 def test_decorated_test():
     from mpi4py import MPI
     rank = MPI.COMM_WORLD.Get_rank()
@@ -35,7 +35,7 @@ def test_decorated_test():
 
 
 @pytest.mark.xfail
-@decorm.mpirun(n=2)
+@mpirical.mpirun(n=2)
 def test_decorated_test_failure():
     def f1():
         raise ValueError('TEST')

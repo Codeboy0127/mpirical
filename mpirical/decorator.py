@@ -1,9 +1,9 @@
 from os import remove
 from os.path import exists
-from decorm.tasks import Task
-from decorm.serialization import serialize, deserialize
-from decorm.mpiruntask import subprocess_mpirun_task_file
-from decorm.exceptions import ExceptionInfo
+from mpirical.tasks import Task
+from mpirical.serialization import serialize, deserialize
+from mpirical.mpiruntask import subprocess_mpirun_task_file
+from mpirical.exceptions import ExceptionInfo
 
 
 class mpirun(object):

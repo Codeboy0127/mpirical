@@ -1,8 +1,8 @@
 import os
 
-from decorm.tasks import Task
-from decorm.serialization import serialize, deserialize
-from decorm.mpiruntask import subprocess_mpirun_task_file, mpirun_task_file
+from mpirical.tasks import Task
+from mpirical.serialization import serialize, deserialize
+from mpirical.mpiruntask import subprocess_mpirun_task_file, mpirun_task_file
 
 
 def main_test_func(x, y=2):
