@@ -2,14 +2,19 @@ import pytest
 import mpirical
 
 
-def test_get_rank():
+@pytest.mark.parametrize('n,rank,result', [
+    (4, 'all', [0, 1, 2, 3]),
+    (4, [1,3], [1, 3]),
+    (4, 0, 0),
+])
+def test_get_rank(n, rank, result):
 
-    @mpirical.mpirun(n=4)
+    @mpirical.mpirun(return_rank=rank, n=n)
     def get_ranks():
         from mpi4py import MPI
         return MPI.COMM_WORLD.Get_rank()
 
-    assert get_ranks() == [0, 1, 2, 3]
+    assert get_ranks() == result
 
 
 def test_raise_exception():
