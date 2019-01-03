@@ -1,11 +1,15 @@
-=======================================================
-Execute Parallel Python Code in its own MPI Environment
-=======================================================
+========
+mpirical
+========
 
 |Circle| |Docs| |Codecov|
 
-The ``mpirical`` package provides an easy way to execute parallel Python code that uses ``mpi4py``
-in its own MPI environment, without the need to executing the Python code with ``mpirun`` or ``mpiexec``.
+The ``mpirical`` package provides an easy way to execute parallel Python code (or any Python function)
+in parallel with MPI.  It uses the ``mpi4py`` package to enable parallel MPI executation in Python, but
+unlike ``mpi4py`` on its own, ``mpirical`` automatically executes decorated functions with ``mpirun``
+or ``mpiexec`` *for you*, instead of requiring that the user run their Python code with ``mpirun`` or
+``mpiexec`` explicitly.  All of this is done in the background!
+
 See documentation_ for more details.
 
 
