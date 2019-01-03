@@ -60,7 +60,7 @@ jobs:
           name: Running tests with coverage
           command: |
             source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml --cov=./ mpirical/tests/
+            pytest --junitxml=test-reports/junit.xml mpirical/tests/
       - save_cache:
           key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
           paths:
