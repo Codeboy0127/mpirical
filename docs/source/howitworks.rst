@@ -1,38 +1,32 @@
-How mpirical Works
-================
+How It Works
+============
 
-mpirical works through serialization.  A mpirical-decorated function
-is serialized and written to a temporary file.  mpirical uses the
-``dill``,  ``cloudpickle``, and ``pickle`` packages for serialization,
-in that order, until the function is successfully serialized.  Once it
-is serialized, DecorM launches a subprocess that executes a special
-MPI executable Python script from within an ``mpirun``-created
-environment.
+The magic behind the ``mpirical`` package is serialization!
 
-This internal command deserializes the decorated function, runs the
-function, gathers the results on all MPI ranks, serializes the
-gathered results and saves the serialized results to a new file.
+When an ``mpirical``-decorated function is executed, the ``mpirical.mpirun``
+decorator executes the function code with the following procedure:
 
-The original process deserializes the gathered results from this file
-and returns the gathered results.  Hence, the function is run on each
-MPI rank, and the return result from each rank is storaged in a list.
+- the decorated function and its arguments are serialized,
 
-Example
--------
+- the serialized function-arguments are written to a file,
 
-Imagine a function that executes a very simple MPI request, namely
-a request to return the MPI rank of the running MPI process:
+- a subprocess is created in which an ``mpirun`` command is executed, running
+  an ``mpi4py``-enabled script that (in parallel)
 
-.. code-block:: python
+  - reads the serialized function-arguments file,
+  - deserializes the function and its arguments,
+  - executes the function with the given arguments in a ``try``-block,
+  - performs an MPI ``gather`` on the results from each MPI process,
+  - serializes the gathered results,
+  - writes the results to a file,
 
-   @decorm.mpirun(nprocs=4)
-   def get_rank():
-       from mpi4py import MPI
-       return MPI.COMM_WORLD.Get_rank()
+- reads the serialized results file,
 
-This function, when called, will return a list of length 4.
+- deserializes the results, and
 
-.. code-block:: python
+- returns the deserialized results.
 
-   >>> get_rank()
-   [0, 1, 2, 3]
+Thanks to the magic of ``dill``, ``cloudpickle``, and Python's internal
+``pickle``, this procedure works with most Python code, and thanks to
+the ``tblib`` package, any errors that are encountered can be captured,
+serialized, and re-raised on the main process with accurate tracebacks!

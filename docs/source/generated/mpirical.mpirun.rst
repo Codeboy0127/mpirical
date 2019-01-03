@@ -1,5 +1,5 @@
 mpirical.mpirun
-=============
+===============
 
 .. currentmodule:: mpirical
 
