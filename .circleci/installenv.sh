@@ -25,7 +25,7 @@ python --version
 
 echo; echo "===== UPDATE ${ENV_NAME} ENVIRONMENT ====="; echo
 conda install mpich
-conda env update --file requirements/development.txt --quiet
+pip install -r requirements/development.txt
 conda install codecov
 
 echo; echo "===== INSTALL PACKAGE ====="; echo
