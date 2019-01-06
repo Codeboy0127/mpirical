@@ -22,6 +22,8 @@ python --version
 
 echo; echo "===== INSTALL MPICH ====="; echo
 conda install mpich
+which mpicc
+which gcc
 
 echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
 pip install -r requirements/development.txt
