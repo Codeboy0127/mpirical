@@ -1,0 +1,5 @@
+-r production.txt
+sphinx
+pygments
+numpydoc
+sphinx_rtd_theme

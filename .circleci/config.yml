@@ -15,22 +15,22 @@ jobs:
 
     environment:
       PYTHON: "3.6"
-      ENV_NAME: "mpirical-dev"
+      ENV_NAME: "mpirical-ci"
 
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-3.6-{{ checksum "requirements/development.txt" }}
       - run:
           name: Install and activate conda environment
-          command: ./ci/install-circle.sh
+          command: .circleci/installenv.sh
       - run:
           name: Running tests with coverage
           command: |
             source activate ${ENV_NAME}
             pytest --junitxml=test-reports/junit.xml --cov=./ mpirical/tests/
       - save_cache:
-          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-3.6-{{ checksum "requirements/development.txt" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
@@ -47,22 +47,22 @@ jobs:
 
     environment:
       PYTHON: "2.7"
-      ENV_NAME: "mpirical-dev"
+      ENV_NAME: "mpirical-ci"
 
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-2.7-{{ checksum "requirements/development.txt" }}
       - run:
           name: Install and activate conda environment
-          command: ./ci/install-circle.sh
+          command: .circleci/installenv.sh
       - run:
           name: Running tests with coverage
           command: |
             source activate ${ENV_NAME}
             pytest --junitxml=test-reports/junit.xml mpirical/tests/
       - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-2.7-{{ checksum "requirements/development.txt" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"

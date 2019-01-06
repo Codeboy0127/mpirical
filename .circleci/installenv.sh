@@ -17,22 +17,19 @@ conda create --name ${ENV_NAME} python=${PYTHON} --quiet
 echo; echo "===== ACTIVATE ${ENV_NAME} ENVIRONMENT ====="; echo
 source activate ${ENV_NAME}
 
+echo; echo "===== UPDATE PIP ====="; echo
+pip install pip --upgrade
+
 echo; echo "===== ${ENV_NAME} ENVIRONMENT PYTHON VERSION ====="; echo
 python --version
 
 echo; echo "===== UPDATE ${ENV_NAME} ENVIRONMENT ====="; echo
-conda env update --file environment-dev.yml --quiet
-
-echo; echo "===== UPDATE PIP ====="; echo
-pip install pip --upgrade
+conda install mpich
+conda env update --file requirements/development.txt --quiet
+conda install codecov
 
 echo; echo "===== INSTALL PACKAGE ====="; echo
 pip install --no-deps --quiet -e .
 
 echo; echo "===== CONDA LIST ${ENV_NAME} ====="; echo
 conda list
-
-echo; echo "===== PIP LIST ${ENV_NAME} ====="; echo
-pip list
-
-
