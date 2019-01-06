@@ -17,15 +17,16 @@ conda create --name ${ENV_NAME} python=${PYTHON} --quiet
 echo; echo "===== ACTIVATE ${ENV_NAME} ENVIRONMENT ====="; echo
 source activate ${ENV_NAME}
 
-echo; echo "===== UPDATE PIP ====="; echo
-pip install pip --upgrade
-
 echo; echo "===== ${ENV_NAME} ENVIRONMENT PYTHON VERSION ====="; echo
 python --version
 
-echo; echo "===== UPDATE ${ENV_NAME} ENVIRONMENT ====="; echo
+echo; echo "===== INSTALL MPICH ====="; echo
 conda install mpich
+
+echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
 pip install -r requirements/development.txt
+
+echo; echo "===== INSTALL CODECOV ====="; echo
 conda install codecov
 
 echo; echo "===== INSTALL PACKAGE ====="; echo
