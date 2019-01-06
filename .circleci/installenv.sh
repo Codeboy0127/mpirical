@@ -22,17 +22,15 @@ python --version
 
 echo; echo "===== INSTALL MPICH ====="; echo
 conda install mpich
-which mpicc
-which gcc
 
-echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
-pip install -r requirements/development.txt
-
-echo; echo "===== INSTALL CODECOV ====="; echo
-conda install codecov
+#echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
+#pip install -r requirements/development.txt
 
 echo; echo "===== INSTALL PACKAGE ====="; echo
 pip install --no-deps --quiet -e .
+
+echo; echo "===== INSTALL CODECOV ====="; echo
+conda install codecov
 
 echo; echo "===== CONDA LIST ${ENV_NAME} ====="; echo
 conda list
