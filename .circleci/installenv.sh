@@ -4,7 +4,7 @@ set -e
 set -eo pipefail
 
 echo; echo "===== UPDATE CONTAINER ====="; echo
-apt-get update; apt-get install -y make
+apt-get update; apt-get install build-essential
 
 echo; echo "===== SETUP CONDA ====="; echo
 conda config --set always_yes true --set changeps1 false --set quiet true
