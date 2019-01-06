@@ -23,8 +23,8 @@ python --version
 echo; echo "===== INSTALL MPICH ====="; echo
 conda install mpich
 
-#echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
-#pip install -r requirements/development.txt
+echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
+pip install -r requirements/development.txt
 
 echo; echo "===== INSTALL PACKAGE ====="; echo
 pip install --no-deps --quiet -e .
