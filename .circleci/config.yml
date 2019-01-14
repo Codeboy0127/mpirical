@@ -23,7 +23,7 @@ jobs:
           key: deps-{{ .Branch }}-3.6-{{ checksum "requirements/development.txt" }}
       - run:
           name: Install and activate conda environment
-          command: .circleci/installenv.sh
+          command: .circleci/install.sh
       - run:
           name: Running tests with coverage
           command: |
@@ -55,7 +55,7 @@ jobs:
           key: deps-{{ .Branch }}-2.7-{{ checksum "requirements/development.txt" }}
       - run:
           name: Install and activate conda environment
-          command: .circleci/installenv.sh
+          command: .circleci/install.sh
       - run:
           name: Running tests with coverage
           command: |
