@@ -4,24 +4,24 @@ set -e
 set -eo pipefail
 
 echo; echo "===== UPDATE CONTAINER ====="; echo
-apt-get update; apt-get install -y build-essential
+apt-get update
 
 echo; echo "===== SETUP CONDA ====="; echo
-conda config --set always_yes true --set changeps1 false --set quiet true
-conda update --quiet conda
+conda config --set always_yes true --set quiet true
+conda update conda
 conda config --add channels conda-forge
 
 echo; echo "===== CREATE ${ENV_NAME} ENVIRONMENT WITH PYTHON${PYTHON} ====="; echo
-conda create --name ${ENV_NAME} python=${PYTHON} --quiet
+conda create --name ${ENV_NAME} python=${PYTHON}
 
 echo; echo "===== ACTIVATE ${ENV_NAME} ENVIRONMENT ====="; echo
 source activate ${ENV_NAME}
 
-echo; echo "===== ${ENV_NAME} ENVIRONMENT PYTHON VERSION ====="; echo
+echo; echo "===== VERIFY PYTHON VERSION ====="; echo
 python --version
 
 echo; echo "===== INSTALL MPICH ====="; echo
-conda install mpich
+conda install gcc_linux-64 mpich
 
 echo; echo "===== INSTALL DEVELOPMENT REQUIREMENTS ====="; echo
 pip install -r requirements/development.txt
