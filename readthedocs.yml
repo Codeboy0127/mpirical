@@ -1,4 +1,9 @@
-requirements_file: requirements/documentation.txt
+build:
+   image: latest
+
+conda:
+   file: docs/env.yml
+
 python:
    version: 3
    setup_py_install: true

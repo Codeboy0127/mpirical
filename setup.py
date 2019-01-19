@@ -15,8 +15,7 @@ def read_requires(filename):
 
 setup_requires = ['versioneer']
 install_requires = read_requires('requirements/production.txt')
-extras_require = {'dev': read_requires('requirements/development.txt'),
-                  'docs': read_requires('requirements/documentation.txt')}
+extras_require = {'dev': read_requires('requirements/development.txt')}
 
 setup(name='mpirical',
       version=versioneer.get_version(),
