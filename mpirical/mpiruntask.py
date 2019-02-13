@@ -26,8 +26,9 @@ def mpirun_cmds(**kwargs):
     return cmds
 
 
-def subprocess_mpirun_task_file(task_file, result_file, **kwargs):
-    p = Popen(mpirun_cmds(**kwargs) + [task_file, result_file])
+def launch_mpirun_task_file(task_file, result_file, **kwargs):
+    cmds = mpirun_cmds(**kwargs) + [task_file, result_file]
+    p = Popen(cmds)
     p.wait()
     if p.returncode != 0:
         raise RuntimeError('Task failed to run')

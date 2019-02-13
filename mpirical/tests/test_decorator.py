@@ -4,7 +4,7 @@ import mpirical
 
 @pytest.mark.parametrize('n,rank,result', [
     (4, 'all', [0, 1, 2, 3]),
-    (4, [1,3], [1, 3]),
+    (4, [1, 3], [1, 3]),
     (4, 0, 0),
 ])
 def test_get_rank(n, rank, result):

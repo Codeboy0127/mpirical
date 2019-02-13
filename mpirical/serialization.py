@@ -37,8 +37,10 @@ def _method_wrapper(obj, module=dill, write=True, file=None, **kwargs):
     if hasattr(module, method):
         return_val = getattr(module, method)(*args, **kwargs)
     else:
-        module_name = module.__name__ if hasattr(module, '__name__') else str(module)
-        raise AttributeError('Module {} has no {} method'.format(module_name, method))
+        module_name = (module.__name__ if hasattr(module, '__name__')
+                       else str(module))
+        msg = 'Module {} has no {} method'.format(module_name, method)
+        raise AttributeError(msg)
 
     if must_close:
         file_obj.close()
@@ -56,7 +58,8 @@ def _try_methods(obj, modules=None, write=True, file=None, **kwargs):
     while modules and unsuccessful:
         module = modules.pop(0)
         try:
-            new_obj = _method_wrapper(obj, module=module, write=write, file=file, **kwargs)
+            new_obj = _method_wrapper(obj, module=module, write=write,
+                                      file=file, **kwargs)
         except Exception as e:
             last_exception = e
         else:

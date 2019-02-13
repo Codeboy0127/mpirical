@@ -35,7 +35,8 @@ def test_deserialize_mpi_bcast_default():
 @pytest.mark.parametrize('deserializers', ([dill], [pickle], [cloudpickle]))
 def test_deserialize_mpi_bcast(deserializers):
     serialized_mpi_bcast = serialize(mpi_bcast, serializers=deserializers)
-    deserialized_mpi_bcast = deserialize(serialized_mpi_bcast, deserializers=deserializers)
+    deserialized_mpi_bcast = deserialize(serialized_mpi_bcast,
+                                         deserializers=deserializers)
     assert deserialized_mpi_bcast('x') == mpi_bcast('x')
 
 
