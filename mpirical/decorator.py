@@ -2,7 +2,7 @@ from os import remove
 from os.path import exists
 from mpirical.tasks import Task
 from mpirical.serialization import serialize, deserialize
-from mpirical.mpiruntask import subprocess_mpirun_task_file
+from mpirical.mpiruntask import launch_mpirun_task_file
 from mpirical.exceptions import ExceptionInfo
 
 
@@ -45,7 +45,7 @@ class mpirun(object):
 
             task = Task(func, *args, **kwargs)
             serialize(task, file=task_file)
-            subprocess_mpirun_task_file(task_file, result_file, **self.kwargs)
+            launch_mpirun_task_file(task_file, result_file, **self.kwargs)
             results = deserialize(file=result_file)
 
             self._remove_file(task_file)
