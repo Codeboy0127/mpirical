@@ -1,0 +1,10 @@
+name: mpirical
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - mpi4py
+  - dill
+  - cloudpickle
+  - tblib
+  - six
