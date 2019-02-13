@@ -69,7 +69,7 @@ def test_serialize_lambda_task():
 
 def test_serialize_mpi_bcast_task_to_from_file():
     task = Task(mpi_bcast, 'x')
-    filename = 'mpi_bcast_task.out'
+    filename = 'mpi_bcast_task.task'
     serialize(task, file=filename)
     assert os.path.exists(filename)
     deserialized_task = deserialize(file=filename)
