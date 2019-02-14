@@ -15,3 +15,7 @@ dependencies:
   - pytest-cov
   - coverage
   - codecov
+  - sphinx
+  - pygments
+  - numpydoc
+  - sphinx_rtd_theme
