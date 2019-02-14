@@ -2,7 +2,7 @@ build:
    image: latest
 
 conda:
-   file: docs/env.yml
+   file: ./environment-dev.yml
 
 python:
    version: 3
