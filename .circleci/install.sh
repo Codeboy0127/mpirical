@@ -3,6 +3,8 @@
 set -e
 set -eo pipefail
 
+apt-get install make
+
 conda config --set always_yes true --set quiet true
 conda update conda
 conda config --set pip_interop_enabled True # Enable pip interoperability
