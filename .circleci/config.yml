@@ -6,6 +6,7 @@ workflows:
     jobs:
       - test-3.6
       - test-2.7
+      - test-docs
 
 jobs:
 
@@ -61,6 +62,38 @@ jobs:
           command: |
             source activate ${ENV_NAME}
             pytest --junitxml=test-reports/junit.xml mpirical/tests/
+      - save_cache:
+          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+            - "/opt/conda/pkgs"
+
+  test-docs:
+    docker:
+      - image: continuumio/miniconda:latest
+
+    environment:
+      PYTHON: "3.6"
+      ENV_NAME: "mpirical-ci"
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+      - run:
+          name: Install and activate conda environment
+          command: .circleci/install.sh
+      - run:
+          name: Building docs
+          command: |
+            source activate ${ENV_NAME}
+            cd docs
+            make html
+      - run:
+          name: Check code formatting
+          command: |
+            source activate ${ENV_NAME}
+            flake8
       - save_cache:
           key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
           paths:

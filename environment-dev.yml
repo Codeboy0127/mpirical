@@ -19,3 +19,4 @@ dependencies:
   - pygments
   - numpydoc
   - sphinx_rtd_theme
+  - flake8
