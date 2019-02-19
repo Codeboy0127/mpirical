@@ -1,4 +1,4 @@
-from shutil import which
+from whichcraft import which
 from os import environ
 from os.path import exists, realpath
 from sys import executable, argv

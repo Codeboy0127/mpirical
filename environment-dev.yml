@@ -10,6 +10,7 @@ dependencies:
   - cloudpickle
   - tblib
   - six
+  - whichcraft
   - versioneer
   - pytest
   - pytest-cov
