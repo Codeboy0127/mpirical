@@ -38,32 +38,34 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "check-tests-coverage.sh"
+      CHECK_SCRIPT: "tests-coverage.sh"
 
   check-2.7-mpich:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-mpich.yml"
-      CHECK_SCRIPT: "check-tests-only.sh"
+      CHECK_SCRIPT: "tests-only.sh"
 
   check-2.7-openmpi:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-openmpi.yml"
-      CHECK_SCRIPT: "check-tests-only.sh"
+      CHECK_SCRIPT: "tests-only.sh"
+      ALLOW_RUN_AS_ROOT: "1"
+      OMPI_MCA_rmaps_base_oversubscribe: "1"
 
   check-docs:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "check-docs.sh"
+      CHECK_SCRIPT: "docs.sh"
 
   check-linting:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "check-linting.sh"
+      CHECK_SCRIPT: "linting.sh"
