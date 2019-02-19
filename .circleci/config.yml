@@ -11,25 +11,25 @@ workflows:
       - check-linting
 
 default-job: &default-job
-    docker:
-      - image: continuumio/miniconda:latest
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
-      - run:
-          name: Install conda environment
-          command: .circleci/install.sh
-      - run:
-          name: Running checks
-          command: |
-            source activate ${ENV_NAME}
-            .circleci/${CHECK_SCRIPT}
-      - save_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
-          paths:
-            - "/opt/conda/envs/${ENV_NAME}/"
-            - "/opt/conda/pkgs"
+  docker:
+    - image: continuumio/miniconda:latest
+  steps:
+    - checkout
+    - restore_cache:
+        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+    - run:
+        name: Install conda environment
+        command: .circleci/install.sh
+    - run:
+        name: Running checks
+        command: |
+          source activate ${ENV_NAME}
+          .circleci/${CHECK_SCRIPT}
+    - save_cache:
+        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+        paths:
+          - "/opt/conda/envs/${ENV_NAME}/"
+          - "/opt/conda/pkgs"
 
 jobs:
 
@@ -53,7 +53,7 @@ jobs:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-openmpi.yml"
       CHECK_SCRIPT: "tests-only.sh"
-      ALLOW_RUN_AS_ROOT: "1"
+      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
 
   check-docs:
