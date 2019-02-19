@@ -95,9 +95,6 @@ jobs:
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
-      - store_artifacts:
-          path: docs/_build/html
-          destination: html
 
   check-linting:
     docker:
