@@ -41,19 +41,21 @@ jobs:
       ENV_SCRIPT: "env-3.6-mpich.yml"
       CHECK_SCRIPT: "test-unit-coverage.sh"
 
-  test-3.6-openmpi:
-    <<: *default-job
-    environment:
-      ENV_NAME: "mpirical"
-      ENV_SCRIPT: "env-3.6-openmpi.yml"
-      CHECK_SCRIPT: "test-unit-openmpi.sh"
-
   test-2.7-mpich:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-mpich.yml"
       CHECK_SCRIPT: "test-unit-only.sh"
+
+  test-3.6-openmpi:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.6-openmpi.yml"
+      CHECK_SCRIPT: "test-unit-openmpi.sh"
+      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
+      OMPI_MCA_rmaps_base_oversubscribe: "1"
 
   test-2.7-openmpi:
     <<: *default-job
