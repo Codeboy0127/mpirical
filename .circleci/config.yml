@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
       - run:
           name: Install and activate conda environment
           command: .circleci/install.sh
@@ -32,7 +32,7 @@ jobs:
             source activate ${ENV_NAME}
             pytest --junitxml=test-reports/junit.xml --cov=./ mpirical/tests/
       - save_cache:
-          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
@@ -54,7 +54,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
       - run:
           name: Install and activate conda environment
           command: .circleci/install.sh
@@ -64,7 +64,7 @@ jobs:
             source activate ${ENV_NAME}
             pytest --junitxml=test-reports/junit.xml mpirical/tests/
       - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
@@ -80,7 +80,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
       - run:
           name: Install and activate conda environment
           command: .circleci/install.sh
@@ -91,7 +91,7 @@ jobs:
             cd docs
             make html
       - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
@@ -110,7 +110,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
       - run:
           name: Install and activate conda environment
           command: .circleci/install.sh
@@ -120,7 +120,7 @@ jobs:
             source activate ${ENV_NAME}
             flake8
       - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
+          key: deps-{{ .Branch }}-${PYTHON}-{{ checksum "environment-dev.yml" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
