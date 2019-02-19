@@ -4,11 +4,11 @@ workflows:
   version: 2
   default:
     jobs:
-      - check-3.6-mpich
-      - check-2.7-mpich
-      - check-2.7-openmpi
-      - check-docs
-      - check-linting
+      - test-3.6-mpich
+      - test-2.7-mpich
+      - test-2.7-openmpi
+      - test-docs
+      - test-linting
 
 default-job: &default-job
   docker:
@@ -33,39 +33,39 @@ default-job: &default-job
 
 jobs:
 
-  check-3.6-mpich:
+  test-3.6-mpich:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "tests-coverage.sh"
+      CHECK_SCRIPT: "test-unit-coverage.sh"
 
-  check-2.7-mpich:
+  test-2.7-mpich:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-mpich.yml"
-      CHECK_SCRIPT: "tests-only.sh"
+      CHECK_SCRIPT: "test-unit-only.sh"
 
-  check-2.7-openmpi:
+  test-2.7-openmpi:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-openmpi.yml"
-      CHECK_SCRIPT: "tests-only.sh"
+      CHECK_SCRIPT: "test-unit-only.sh"
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
 
-  check-docs:
+  test-docs:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "docs.sh"
+      CHECK_SCRIPT: "test-docs.sh"
 
-  check-linting:
+  test-linting:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "linting.sh"
+      CHECK_SCRIPT: "test-linting.sh"
