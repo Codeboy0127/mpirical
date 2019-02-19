@@ -1,6 +1,5 @@
 version: 2
 
-
 workflows:
   version: 2
   default:
@@ -9,7 +8,6 @@ workflows:
       - check-2.7-mpich
       - check-docs
       - check-linting
-
 
 default-job: &default-job
     docker:
@@ -32,7 +30,6 @@ default-job: &default-job
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
 
-
 jobs:
 
   check-3.6-mpich:
@@ -43,18 +40,21 @@ jobs:
       CHECK_SCRIPT: "check-3.6-mpich.sh"
 
   check-2.7-mpich:
+    <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-mpich.yml"
       CHECK_SCRIPT: "check-2.7-mpich.sh"
 
   check-docs:
+    <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
       CHECK_SCRIPT: "check-docs.sh"
 
   check-linting:
+    <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
