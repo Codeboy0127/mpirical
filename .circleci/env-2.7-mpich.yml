@@ -1,8 +1,9 @@
-name: mpirical-dev
+name: mpirical-ci
 channels:
   - conda-forge
   - defaults
 dependencies:
+  - python=2.7
   - pyyaml
   - mpich
   - mpi4py

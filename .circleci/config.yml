@@ -4,123 +4,78 @@ workflows:
   version: 2
   default:
     jobs:
-      - check-3.6
-      - check-2.7
-      - check-docs
-      - check-linting
+      - test-3.6-mpich
+      - test-2.7-mpich
+      - test-3.6-openmpi
+      - test-2.7-openmpi
+      - test-docs
+      - test-linting
+
+default-job: &default-job
+  docker:
+    - image: continuumio/miniconda:latest
+  steps:
+    - checkout
+    - restore_cache:
+        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+    - run:
+        name: Install conda environment
+        command: .circleci/install.sh
+    - run:
+        name: Running checks
+        command: |
+          source activate ${ENV_NAME}
+          .circleci/${CHECK_SCRIPT}
+    - save_cache:
+        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+        paths:
+          - "/opt/conda/envs/${ENV_NAME}/"
+          - "/opt/conda/pkgs"
 
 jobs:
 
-  check-3.6:
-    docker:
-      - image: continuumio/miniconda:latest
-
+  test-3.6-mpich:
+    <<: *default-job
     environment:
-      PYTHON: "3.6"
-      ENV_NAME: "mpirical-ci"
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.6-mpich.yml"
+      CHECK_SCRIPT: "test-unit-coverage.sh"
 
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
-      - run:
-          name: Install and activate conda environment
-          command: .circleci/install.sh
-      - run:
-          name: Running tests with coverage
-          command: |
-            source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml --cov=./ mpirical/tests/
-      - save_cache:
-          key: deps-{{ .Branch }}-3.6-{{ checksum "environment-dev.yml" }}
-          paths:
-            - "/opt/conda/envs/${ENV_NAME}/"
-            - "/opt/conda/pkgs"
-      - run:
-          name: Report code coverage
-          command: |
-            source activate ${ENV_NAME}
-            echo "[Uploading Coverage]"
-            codecov
-
-  check-2.7:
-    docker:
-      - image: continuumio/miniconda:latest
-
+  test-2.7-mpich:
+    <<: *default-job
     environment:
-      PYTHON: "2.7"
-      ENV_NAME: "mpirical-ci"
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-2.7-mpich.yml"
+      CHECK_SCRIPT: "test-unit-only.sh"
 
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
-      - run:
-          name: Install and activate conda environment
-          command: .circleci/install.sh
-      - run:
-          name: Running tests with coverage
-          command: |
-            source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml mpirical/tests/
-      - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
-          paths:
-            - "/opt/conda/envs/${ENV_NAME}/"
-            - "/opt/conda/pkgs"
-
-  check-docs:
-    docker:
-      - image: continuumio/miniconda:latest
-
+  test-3.6-openmpi:
+    <<: *default-job
     environment:
-      PYTHON: "3.6"
-      ENV_NAME: "mpirical-ci"
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.6-openmpi.yml"
+      CHECK_SCRIPT: "test-unit-openmpi.sh"
+      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
+      OMPI_MCA_rmaps_base_oversubscribe: "1"
 
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
-      - run:
-          name: Install and activate conda environment
-          command: .circleci/install.sh
-      - run:
-          name: Building docs
-          command: |
-            source activate ${ENV_NAME}
-            cd docs
-            make html
-      - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
-          paths:
-            - "/opt/conda/envs/${ENV_NAME}/"
-            - "/opt/conda/pkgs"
-      - store_artifacts:
-          path: docs/_build/html
-          destination: html
-
-  check-linting:
-    docker:
-      - image: continuumio/miniconda:latest
-
+  test-2.7-openmpi:
+    <<: *default-job
     environment:
-      PYTHON: "3.6"
-      ENV_NAME: "mpirical-ci"
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-2.7-openmpi.yml"
+      CHECK_SCRIPT: "test-unit-openmpi.sh"
+      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
+      OMPI_MCA_rmaps_base_oversubscribe: "1"
 
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
-      - run:
-          name: Install and activate conda environment
-          command: .circleci/install.sh
-      - run:
-          name: Check code formatting
-          command: |
-            source activate ${ENV_NAME}
-            flake8
-      - save_cache:
-          key: deps-{{ .Branch }}-2.7-{{ checksum "environment-dev.yml" }}
-          paths:
-            - "/opt/conda/envs/${ENV_NAME}/"
-            - "/opt/conda/pkgs"
+  test-docs:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.6-mpich.yml"
+      CHECK_SCRIPT: "test-docs.sh"
+
+  test-linting:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.6-mpich.yml"
+      CHECK_SCRIPT: "test-linting.sh"

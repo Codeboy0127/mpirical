@@ -1,6 +1,6 @@
-import mpi4py
-
-from os.path import realpath, dirname, join, exists
+from whichcraft import which
+from os import environ
+from os.path import exists, realpath
 from sys import executable, argv
 from subprocess import Popen
 from mpirical.serialization import serialize, deserialize
@@ -9,13 +9,14 @@ from tblib import pickling_support
 pickling_support.install()
 
 THIS_SCRIPT = realpath(__file__)
-MPIRUN = join(dirname(mpi4py.get_config()['mpicc']), 'mpirun')
-if not exists(MPIRUN):
+MPIRUN = environ['MPIRICAL_MPIRUN'].split() if 'MPIRICAL_MPIRUN' in environ else ['mpirun']
+MPIRUN[0] = which(MPIRUN[0])
+if not exists(MPIRUN[0]):
     raise RuntimeError('Cannot find mpirun')
 
 
 def mpirun_cmds(**kwargs):
-    cmds = [MPIRUN]
+    cmds = list(MPIRUN)
     for k in kwargs:
         mpiarg = '-{}'.format(str(k).replace('_', '-'))
         cmds.append(mpiarg)
@@ -28,6 +29,7 @@ def mpirun_cmds(**kwargs):
 
 def launch_mpirun_task_file(task_file, result_file, **kwargs):
     cmds = mpirun_cmds(**kwargs) + [task_file, result_file]
+    print(cmds)
     p = Popen(cmds)
     p.wait()
     if p.returncode != 0:
