@@ -1,0 +1,24 @@
+name: mpirical-ci
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6
+  - pyyaml
+  - openmpi
+  - mpi4py
+  - dill
+  - cloudpickle
+  - tblib
+  - six
+  - whichcraft
+  - versioneer
+  - pytest
+  - pytest-cov
+  - coverage
+  - codecov
+  - sphinx
+  - pygments
+  - numpydoc
+  - sphinx_rtd_theme
+  - flake8
