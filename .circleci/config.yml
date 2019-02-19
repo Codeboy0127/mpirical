@@ -38,21 +38,21 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "check-3.6.sh"
+      CHECK_SCRIPT: "check-tests-coverage.sh"
 
   check-2.7-mpich:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-mpich.yml"
-      CHECK_SCRIPT: "check-2.7.sh"
+      CHECK_SCRIPT: "check-tests-only.sh"
 
   check-2.7-openmpi:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-openmpi.yml"
-      CHECK_SCRIPT: "check-2.7.sh"
+      CHECK_SCRIPT: "check-tests-only.sh"
 
   check-docs:
     <<: *default-job
