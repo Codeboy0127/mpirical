@@ -29,7 +29,6 @@ def mpirun_cmds(**kwargs):
 
 def launch_mpirun_task_file(task_file, result_file, **kwargs):
     cmds = mpirun_cmds(**kwargs) + [task_file, result_file]
-    print(cmds)
     p = Popen(cmds)
     p.wait()
     if p.returncode != 0:
