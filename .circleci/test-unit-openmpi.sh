@@ -5,5 +5,5 @@ set -o errexit
 set -o xtrace
 
 echo "[Running Tests]"
-pytest -m 'not mpiunstable' mpirical/tests/
-pytest -m mpiunstable mpirical/tests/
+pytest --nompiunstable mpirical/tests/
+pytest --mpiunstable mpirical/tests/
