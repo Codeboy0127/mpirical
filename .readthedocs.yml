@@ -1,6 +1,9 @@
 build:
    image: latest
 
+conda:
+   environment: ./circleci/env-3.6-mpich
+
 requirements_file: requirements-dev.txt
 
 python:
