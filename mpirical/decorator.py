@@ -41,7 +41,7 @@ class mpirun(object):
     def __call__(self, func):
         def wrapped_func(*args, **kwargs):
             task_file = '{}.task'.format(func.__name__)
-            result_file = '{}.result'.format(task_file)
+            result_file = '{}.result'.format(func.__name__)
 
             task = Task(func, *args, **kwargs)
             serialize(task, file=task_file)
