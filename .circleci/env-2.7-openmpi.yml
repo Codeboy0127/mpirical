@@ -5,5 +5,4 @@ channels:
 dependencies:
   - python=2.7
   - openmpi
-  - mpi4py
   - pytest
