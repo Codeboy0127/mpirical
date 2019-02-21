@@ -13,5 +13,6 @@ conda env create -f .circleci/${ENV_SCRIPT} --name ${ENV_NAME}
 conda env list
 source activate ${ENV_NAME}
 pip install pip --upgrade
+pip install -r requirements-dev.txt
 pip install -e .
 conda list -n ${ENV_NAME}

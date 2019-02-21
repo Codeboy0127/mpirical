@@ -5,12 +5,3 @@ channels:
 dependencies:
   - python=3.6
   - mpich-mpicc
-  - pytest
-  - pytest-cov
-  - coverage
-  - codecov
-  - flake8
-  - sphinx
-  - pygments
-  - numpydoc
-  - sphinx_rtd_theme

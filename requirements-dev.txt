@@ -5,3 +5,7 @@ pytest-cov
 coverage
 codecov
 flake8
+sphinx
+pygments
+numpydoc
+sphinx_rtd_theme
