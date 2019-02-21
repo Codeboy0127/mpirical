@@ -23,9 +23,7 @@ default-job: &default-job
         command: .circleci/install.sh
     - run:
         name: Running checks
-        command: |
-          source activate ${ENV_NAME}
-          .circleci/${CHECK_SCRIPT}
+        command: source activate ${ENV_NAME} && .circleci/${TEST_SCRIPT}
     - save_cache:
         key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
         paths:
@@ -39,14 +37,14 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "test-unit-coverage.sh"
+      TEST_SCRIPT: "test-unit-coverage.sh"
 
   test-3.6-openmpi:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-openmpi.yml"
-      CHECK_SCRIPT: "test-unit-openmpi.sh"
+      TEST_SCRIPT: "test-unit-openmpi.sh"
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
 
@@ -55,14 +53,14 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-mpich.yml"
-      CHECK_SCRIPT: "test-unit-only.sh"
+      TEST_SCRIPT: "test-unit-only.sh"
 
   test-2.7-openmpi:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-2.7-openmpi.yml"
-      CHECK_SCRIPT: "test-unit-openmpi.sh"
+      TEST_SCRIPT: "test-unit-openmpi.sh"
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
 
@@ -71,11 +69,11 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "test-docs.sh"
+      TEST_SCRIPT: "test-docs.sh"
 
   test-linting:
     <<: *default-job
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
-      CHECK_SCRIPT: "test-linting.sh"
+      TEST_SCRIPT: "test-linting.sh"
