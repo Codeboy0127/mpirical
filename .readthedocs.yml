@@ -2,7 +2,7 @@ build:
    image: latest
 
 conda:
-   environment: ./circleci/env-3.6-mpich
+   environment: ./circleci/env-3.6-mpich.yml
 
 requirements_file: requirements-dev.txt
 
