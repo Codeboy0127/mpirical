@@ -15,7 +15,15 @@ if not exists(MPIRUN[0]):
     raise RuntimeError('Cannot find mpirun')
 
 
-def mpirun_cmds(**kwargs):
+def launch_mpirun_task_file(task_file, result_file, **kwargs):
+    cmds = mpirun_cmds(task_file, result_file, **kwargs)
+    p = Popen(cmds)
+    retcode = p.wait()
+    if retcode != 0:
+        raise RuntimeError('Task failed to run')
+
+
+def mpirun_cmds(task_file, result_file, **kwargs):
     cmds = list(MPIRUN)
     for k in kwargs:
         mpiarg = '-{}'.format(str(k).replace('_', '-'))
@@ -23,17 +31,8 @@ def mpirun_cmds(**kwargs):
         v = kwargs[k]
         if v is not None:
             cmds.append(str(v))
-    cmds.extend([executable, THIS_SCRIPT])
+    cmds.extend([executable, THIS_SCRIPT, task_file, result_file])
     return cmds
-
-
-def launch_mpirun_task_file(task_file, result_file, **kwargs):
-    cmds = mpirun_cmds(**kwargs) + [task_file, result_file]
-    print(cmds)
-    p = Popen(cmds)
-    p.wait()
-    if p.returncode != 0:
-        raise RuntimeError('Task failed to run')
 
 
 def mpirun_task_file(task_file, result_file):

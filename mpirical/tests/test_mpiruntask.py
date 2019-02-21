@@ -1,4 +1,5 @@
 import os
+import pytest
 
 from mpirical.tasks import Task
 from mpirical.serialization import serialize, deserialize
@@ -29,6 +30,7 @@ def test_mpirun_task_file_serial():
         os.remove(result_file)
 
 
+@pytest.mark.mpiunstable
 def test_mpirun_task_file_parallel():
     task_file = 'parallel_main_test_func.task'
     result_file = 'parallel_main_test_func.result'
