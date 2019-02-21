@@ -4,5 +4,5 @@ channels:
   - defaults
 dependencies:
   - python=2.7
-  - mpich
+  - mpich-mpicc
   - pytest

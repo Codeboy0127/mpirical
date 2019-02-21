@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.6
-  - mpich
+  - mpich-mpicc
   - pytest
   - pytest-cov
   - coverage
