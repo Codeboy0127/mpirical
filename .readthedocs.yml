@@ -4,11 +4,10 @@ build:
   image: latest
 
 conda:
-  environment: .circleci/env-3.6-mpich.yml
+  environment: ./docs/env.yml
 
 python:
   version: 3.6
   install:
-    - requirements: requirements-dev.txt
     - method: setuptools
       path: .
