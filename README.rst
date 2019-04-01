@@ -10,7 +10,7 @@ unlike ``mpi4py`` on its own, ``mpirical`` automatically executes decorated func
 or ``mpiexec`` *for you*, instead of requiring that the user run their Python code with ``mpirun`` or
 ``mpiexec`` explicitly.  All of this is done in the background!
 
-See documentation_ for more details.
+See the documentation_ for more details.
 
 
 LICENSE
