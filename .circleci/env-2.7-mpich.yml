@@ -1,7 +1,0 @@
-name: mpirical-ci
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - python=2.7
-  - mpich-mpicc

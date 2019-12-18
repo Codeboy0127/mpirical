@@ -6,8 +6,6 @@ workflows:
     jobs:
       - test-3.6-mpich
       - test-3.6-openmpi
-      - test-2.7-mpich
-      - test-2.7-openmpi
       - test-docs
       - test-linting
 
@@ -44,22 +42,6 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-openmpi.yml"
-      TEST_SCRIPT: "test-unit-openmpi.sh"
-      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
-      OMPI_MCA_rmaps_base_oversubscribe: "1"
-
-  test-2.7-mpich:
-    <<: *default-job
-    environment:
-      ENV_NAME: "mpirical"
-      ENV_SCRIPT: "env-2.7-mpich.yml"
-      TEST_SCRIPT: "test-unit-only.sh"
-
-  test-2.7-openmpi:
-    <<: *default-job
-    environment:
-      ENV_NAME: "mpirical"
-      ENV_SCRIPT: "env-2.7-openmpi.yml"
       TEST_SCRIPT: "test-unit-openmpi.sh"
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
