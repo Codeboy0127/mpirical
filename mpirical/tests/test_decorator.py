@@ -31,7 +31,7 @@ def test_raise_exception():
         raise_exception()
 
 
-@mpirical.mpirun(n=4)
+@mpirical.mpirun(np=4)
 def test_decorated_test():
     from mpi4py import MPI
     rank = MPI.COMM_WORLD.Get_rank()
