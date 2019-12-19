@@ -5,6 +5,7 @@ pytest-cov
 coverage
 codecov
 flake8
+black
 sphinx
 pygments
 numpydoc
