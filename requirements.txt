@@ -1,5 +1,4 @@
 mpi4py
-dill
 cloudpickle
 tblib
 six
