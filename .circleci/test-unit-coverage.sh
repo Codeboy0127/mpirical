@@ -5,7 +5,7 @@ set -o errexit
 set -o xtrace
 
 echo "[Running Tests with Coverage]"
-pytest --junitxml=test-reports/junit.xml --cov=./ mpirical/tests/
+pytest --verbose --junitxml=test-reports/junit.xml --cov=./ mpirical/tests/
 
 echo
 
