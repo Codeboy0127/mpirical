@@ -1,6 +1,5 @@
 import os
 import sys
-import pytest
 import cloudpickle
 
 from mpirical.serialization import serialize, deserialize
