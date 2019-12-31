@@ -1,8 +1,6 @@
 import os
 import sys
 import pytest
-import pickle
-import dill
 import cloudpickle
 
 from mpirical.serialization import serialize, deserialize
