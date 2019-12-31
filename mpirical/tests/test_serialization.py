@@ -1,6 +1,5 @@
 import os
 import sys
-import cloudpickle
 
 from mpirical.serialization import serialize, deserialize
 from mpirical.tests.utils import mpi_bcast
