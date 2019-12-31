@@ -1,5 +1,5 @@
 from whichcraft import which
-from os import environ
+from os import environ, getcwd
 from os.path import exists, realpath
 from sys import executable, argv
 from subprocess import Popen
@@ -17,7 +17,9 @@ if not exists(MPIRUN[0]):
 
 def launch_mpirun_task_file(task_file, result_file, **kwargs):
     cmds = mpirun_cmds(task_file, result_file, **kwargs)
-    p = Popen(cmds)
+    p_env = environ.copy()
+    p_env['PYTHONPATH'] = ':'.join([getcwd()] + environ.get('PYTHONPATH', '').split(':'))
+    p = Popen(cmds, env=p_env)
     retcode = p.wait()
     if retcode != 0:
         raise RuntimeError('Task failed to run')

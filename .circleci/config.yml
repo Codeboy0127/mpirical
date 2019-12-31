@@ -6,6 +6,10 @@ workflows:
     jobs:
       - test-3.6-mpich
       - test-3.6-openmpi
+      - test-3.7-mpich
+      - test-3.7-openmpi
+      - test-3.8-mpich
+      - test-3.8-openmpi
       - test-docs
       - test-linting
 
@@ -42,7 +46,39 @@ jobs:
     environment:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-openmpi.yml"
-      TEST_SCRIPT: "test-unit-openmpi.sh"
+      TEST_SCRIPT: "test-unit-only.sh"
+      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
+      OMPI_MCA_rmaps_base_oversubscribe: "1"
+
+  test-3.7-mpich:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.7-mpich.yml"
+      TEST_SCRIPT: "test-unit-only.sh"
+
+  test-3.7-openmpi:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.7-openmpi.yml"
+      TEST_SCRIPT: "test-unit-only.sh"
+      MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
+      OMPI_MCA_rmaps_base_oversubscribe: "1"
+
+  test-3.8-mpich:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.8-mpich.yml"
+      TEST_SCRIPT: "test-unit-only.sh"
+
+  test-3.8-openmpi:
+    <<: *default-job
+    environment:
+      ENV_NAME: "mpirical"
+      ENV_SCRIPT: "env-3.8-openmpi.yml"
+      TEST_SCRIPT: "test-unit-only.sh"
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
 
