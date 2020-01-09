@@ -40,7 +40,7 @@ setup(
     install_requires=install_requires,
     license='Apache 2.0',
     zip_safe=False,
-    keywords=['mpirical', 'MPI', 'mpi4py']
+    keywords=['mpirical', 'MPI', 'mpi4py'],
     use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
     setup_requires=['setuptools_scm', 'setuptools>=30.3.0']
 )
