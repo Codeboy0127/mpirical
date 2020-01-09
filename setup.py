@@ -21,7 +21,8 @@ with open('README.rst') as f:
     long_description = f.read()
 
 
-setup(name='mpirical',
+setup(
+    name='mpirical',
     description='Decorate any function to make it run in parallel with MPI',
     url='https://github.com/NCAR/mpirical',
     maintainer='Kevin Paul',
@@ -33,4 +34,5 @@ setup(name='mpirical',
     packages=['mpirical'],
     zip_safe=False,
     use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
-    setup_requires=['setuptools_scm', 'setuptools>=30.3.0'])
+    setup_requires=['setuptools_scm', 'setuptools>=30.3.0']
+)
