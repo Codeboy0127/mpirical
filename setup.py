@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-import versioneer
-
 from setuptools import setup
 
 
@@ -24,8 +22,6 @@ with open('README.rst') as f:
 
 
 setup(name='mpirical',
-      version=versioneer.get_version(),
-      cmdclass=versioneer.get_cmdclass(),
       description='Decorate any function to make it run in parallel with MPI',
       url='https://github.com/NCAR/mpirical',
       maintainer='Kevin Paul',
