@@ -76,7 +76,7 @@ jobs:
     docker:
       - image: ncarxdev/miniconda:3.8
     environment:
-      ENV_FILE: ".circleci/env-3.8-mpich.yml"
+      ENV_FILE: ".circleci/env-mpich.yml"
 
   test-3.8-openmpi:
     <<: *default-job
@@ -86,4 +86,3 @@ jobs:
       ENV_FILE: ".circleci/env-openmpi.yml"
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
-
