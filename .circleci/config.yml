@@ -15,7 +15,7 @@ default-job: &default-job
   steps:
     - checkout
     - restore_cache:
-        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-v2
     - run:
         name: Install dependencies in base environment
         command: conda env update -n base -f ${ENV_FILE}
@@ -33,7 +33,7 @@ default-job: &default-job
     - store_artifacts:
         path: test-reports
     - save_cache:
-        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+        key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-v2
         paths:
           - "/opt/conda/pkgs"
 
