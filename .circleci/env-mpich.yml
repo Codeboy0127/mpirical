@@ -1,0 +1,14 @@
+name: mpirical-ci
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - mpich
+  - mpi4py
+  - cloudpickle
+  - tblib
+  - six
+  - whichcraft
+  - pytest
+  - pytest-cov
+  - codecov
