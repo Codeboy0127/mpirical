@@ -20,6 +20,9 @@ default-job: &default-job
         name: Install dependencies in base environment
         command: conda env update -n base -f ${ENV_FILE}
     - run:
+        name: List packages in the current environment (base)
+        command: conda list
+    - run:
         name: Running tests
         command: pytest --junitxml=test-reports/junit.xml --cov=./ --verbose
     - run:
