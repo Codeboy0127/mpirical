@@ -10,7 +10,6 @@ workflows:
       - test-3.7-openmpi
       - test-3.8-mpich
       - test-3.8-openmpi
-      - test-docs
 
 default-job: &default-job
   docker:
@@ -81,9 +80,3 @@ jobs:
       MPIRICAL_MPIRUN: "mpirun --allow-run-as-root"
       OMPI_MCA_rmaps_base_oversubscribe: "1"
 
-  test-docs:
-    <<: *default-job
-    environment:
-      ENV_NAME: "mpirical"
-      ENV_SCRIPT: "env-3.6-mpich.yml"
-      TEST_SCRIPT: "test-docs.sh"
