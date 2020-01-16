@@ -11,7 +11,6 @@ workflows:
       - test-3.8-mpich
       - test-3.8-openmpi
       - test-docs
-      - test-linting
 
 default-job: &default-job
   docker:
@@ -88,10 +87,3 @@ jobs:
       ENV_NAME: "mpirical"
       ENV_SCRIPT: "env-3.6-mpich.yml"
       TEST_SCRIPT: "test-docs.sh"
-
-  test-linting:
-    <<: *default-job
-    environment:
-      ENV_NAME: "mpirical"
-      ENV_SCRIPT: "env-3.6-mpich.yml"
-      TEST_SCRIPT: "test-linting.sh"
