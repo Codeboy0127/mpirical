@@ -1,7 +1,7 @@
 import os
 import sys
 
-from mpirical.serialization import serialize, deserialize
+from mpirical.serialization import deserialize, serialize
 from mpirical.tests.utils import mpi_bcast
 
 

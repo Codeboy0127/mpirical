@@ -1,11 +1,14 @@
-from whichcraft import which
 from os import environ, getcwd
 from os.path import exists, realpath
-from sys import executable, argv
 from subprocess import Popen
-from mpirical.serialization import serialize, deserialize
-from mpirical.exceptions import ExceptionInfo
+from sys import argv, executable
+
 from tblib import pickling_support
+from whichcraft import which
+
+from mpirical.exceptions import ExceptionInfo
+from mpirical.serialization import deserialize, serialize
+
 pickling_support.install()
 
 THIS_SCRIPT = realpath(__file__)
@@ -39,6 +42,7 @@ def mpirun_cmds(task_file, result_file, **kwargs):
 
 def mpirun_task_file(task_file, result_file):
     from mpi4py import MPI
+
     rank = MPI.COMM_WORLD.Get_rank()
     task = deserialize(file=task_file)
     try:

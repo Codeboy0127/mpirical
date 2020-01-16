@@ -1,9 +1,10 @@
 import os
+
 import pytest
 
-from mpirical.tests.utils import mpi_bcast
-from mpirical.serialization import serialize, deserialize
+from mpirical.serialization import deserialize, serialize
 from mpirical.tasks import Task
+from mpirical.tests.utils import mpi_bcast
 
 
 def main_test_func(*args, **kwargs):
@@ -18,6 +19,7 @@ def test_main_func_task():
 def test_local_func_task():
     def local_test_func(x, y=3):
         return x, y
+
     task = Task(local_test_func, 4)
     assert task.compute() == local_test_func(4)
 
@@ -47,6 +49,7 @@ def test_serialize_main_task():
 def test_serialize_local_task():
     def local_test_func(x, y=3):
         return x, y
+
     task = Task(local_test_func, 4)
     serialized_task = serialize(task)
     deserialized_task = deserialize(serialized_task)
