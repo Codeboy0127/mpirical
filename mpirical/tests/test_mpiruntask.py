@@ -1,9 +1,10 @@
 import os
+
 import pytest
 
-from mpirical.tasks import Task
-from mpirical.serialization import serialize, deserialize
 from mpirical.mpiruntask import launch_mpirun_task_file, mpirun_task_file
+from mpirical.serialization import deserialize, serialize
+from mpirical.tasks import Task
 
 
 def main_test_func(x, y=2):

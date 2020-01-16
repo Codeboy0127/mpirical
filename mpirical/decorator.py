@@ -1,9 +1,10 @@
 from os import remove
 from os.path import exists
-from mpirical.tasks import Task
-from mpirical.serialization import serialize, deserialize
-from mpirical.mpiruntask import launch_mpirun_task_file
+
 from mpirical.exceptions import ExceptionInfo
+from mpirical.mpiruntask import launch_mpirun_task_file
+from mpirical.serialization import deserialize, serialize
+from mpirical.tasks import Task
 
 
 class mpirun(object):
@@ -56,6 +57,7 @@ class mpirun(object):
                 exception.reraise()
             else:
                 return self._collect_results(results)
+
         return wrapped_func
 
     @staticmethod

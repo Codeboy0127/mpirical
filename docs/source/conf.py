@@ -38,13 +38,7 @@ release = mpirical.__version__
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.extlinks',
-    'numpydoc'
-]
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.viewcode', 'sphinx.ext.extlinks', 'numpydoc']
 
 autosummary_generate = True
 
@@ -120,15 +114,12 @@ latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
-
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
-
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
@@ -138,8 +129,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'mpirical.tex', 'mpirical Documentation',
-     'Kevin Paul', 'manual'),
+    (master_doc, 'mpirical.tex', 'mpirical Documentation', 'Kevin Paul', 'manual'),
 ]
 
 
@@ -147,10 +137,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'mpirical', 'mpirical Documentation',
-     [author], 1)
-]
+man_pages = [(master_doc, 'mpirical', 'mpirical Documentation', [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -159,9 +146,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'mpirical', 'mpirical Documentation',
-     author, 'mpirical', 'One line description of project.',
-     'Miscellaneous'),
+    (
+        master_doc,
+        'mpirical',
+        'mpirical Documentation',
+        author,
+        'mpirical',
+        'One line description of project.',
+        'Miscellaneous',
+    ),
 ]
 
 
@@ -189,14 +182,10 @@ epub_exclude_files = ['search.html']
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'numpy': ('https://docs.scipy.org/doc/numpy/',
-              'https://docs.scipy.org/doc/numpy/objects.inv'),
-    'dask': ('https://docs.dask.org/en/latest',
-             'https://docs.dask.org/en/latest/objects.inv'),
-    'distributed': ('https://distributed.dask.org/en/stable/',
-                    'https://distributed.dask.org/en/stable/objects.inv'),
-    'mpi4py': ('https://mpi4py.readthedocs.io/en/stable/',
-               'https://mpi4py.readthedocs.io/en/stable/objects.inv')
+    'numpy': ('https://docs.scipy.org/doc/numpy/', 'https://docs.scipy.org/doc/numpy/objects.inv'),
+    'dask': ('https://docs.dask.org/en/latest', 'https://docs.dask.org/en/latest/objects.inv'),
+    'distributed': ('https://distributed.dask.org/en/stable/', 'https://distributed.dask.org/en/stable/objects.inv'),
+    'mpi4py': ('https://mpi4py.readthedocs.io/en/stable/', 'https://mpi4py.readthedocs.io/en/stable/objects.inv'),
 }
 
 # -- Options for extlinks extension ------------------------------------------
@@ -205,5 +194,5 @@ intersphinx_mapping = {
 # syntax
 extlinks = {
     'issue': ('https://github.com/NCAR/mpirical/issues/%s', 'GH#'),
-    'pr': ('https://github.com/NCAR/mpirical/pull/%s', 'GH#')
+    'pr': ('https://github.com/NCAR/mpirical/pull/%s', 'GH#'),
 }
