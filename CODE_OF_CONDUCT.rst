@@ -59,15 +59,15 @@ project social media accounts, and any other forums created by the project team 
 community uses for communication. In addition, violations of this Code of Conduct outside
 these spaces may affect a person's ability to participate within them. Representation of a
 project may be further defined and clarified by project maintainers.
- 
+
 Community Responsibilities
 --------------------------
- 
+
 Everyone in the community is empowered to respond to people who are showing unacceptable
 behavior. They can talk to them privately or publicly. Anyone requested to stop unacceptable
 behavior is expected to comply immediately. If the behavior continues concerns may be brought
 to the project administrators or to any other party listed in the Reporting section below.
- 
+
 Project Administrator Responsibilities
 --------------------------------------
 

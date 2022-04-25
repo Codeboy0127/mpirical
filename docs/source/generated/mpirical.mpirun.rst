@@ -5,18 +5,12 @@ mpirical.mpirun
 
 .. autoclass:: mpirun
 
-   
+
    .. automethod:: __init__
 
-   
+
    .. rubric:: Methods
 
    .. autosummary::
-   
-      ~mpirun.__init__
-   
-   
 
-   
-   
-   
+      ~mpirun.__init__

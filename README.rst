@@ -19,7 +19,7 @@ LICENSE
 Apache 2.0 (See `License File <https://www.apache.org/licenses/LICENSE-2.0>`__)
 
 .. _documentation: https://mpirical.readthedocs.io
-    
+
 .. |Circle| image:: https://img.shields.io/circleci/build/gh/NCAR/mpirical?style=for-the-badge
     :target: https://circleci.com/gh/NCAR/mpirical/tree/master
 
