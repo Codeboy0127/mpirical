@@ -2,7 +2,7 @@
 mpirical
 ========
 
-|Circle| |Docs| |Codecov|
+|Docs| |Codecov|
 
 The ``mpirical`` package provides an easy way to execute parallel Python code (or any Python function)
 in parallel with MPI.  It uses the ``mpi4py`` package to enable parallel MPI executation in Python, but
